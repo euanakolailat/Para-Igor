@@ -358,15 +358,14 @@
     <div class="opening-inner">
 
       <div class="eyebrow">
-        um presente para você
+        um presente com amor
       </div>
 
       <h1>Para Igor</h1>
 
       <p class="opening-description">
-        Hoje eu quero te levar a alguns lugares.
-        Alguns você conhece muito bem.
-        Outros talvez você precise olhar de um jeito diferente.
+        Eu queria conseguir te entregar isso pessoalmente. 
+        Como ainda não posso, encontrei outra maneira de chegar até você.
       </p>
 
       <button
@@ -443,11 +442,11 @@
         <div class="location-dot"></div>
 
         <span class="location-name">
-          Ribeira
+          Ribeira - Cais de Gaia
         </span>
 
         <span class="location-subtitle">
-          uma memória
+          nosso spot
         </span>
 
       </button>
@@ -468,7 +467,7 @@
         </span>
 
         <span class="location-subtitle">
-          casa
+          um passeio pela praia
         </span>
 
       </button>
@@ -528,32 +527,87 @@
         number: "01",
         title: "Faculdade de Engenharia",
         photo: "",
-        text: `COLOQUE AQUI O TEXTO SOBRE A FEUP.
+        text: `ONDE TUDO COMEÇOU
 
-Você pode escrever quantos parágrafos quiser.
+É engraçado pensar que tudo começou na faculdade.
+Antes de ser o meu amor, você era meu amigo.
+O ano era 2019 e eu entrei na faculdade convicta de que não queria fazer amigos. Terminei conhecendo meu melhor amigo.
 
-Quando formos editar o site, podemos acrescentar
-fotos, pistas, perguntas, vídeos e outras interações.`
+Éramos só dois jovens perdidos, sem saber exatamente o que queríamos fazer.
+Você era confiante.
+Lembro-me das aulas de análise matemática em que você assistia jogos de basquete. Eu tinha a certeza de que você ia ir mal na prova. Você tirou 19...
+Já ali você mostrava os seus primeiros traços de inteligência e competência. Afinal, você é das pessoas mais inteligentes que conheço.
+Isso é certamente algo que admiro e amo em você. Não porque você já tirava boas notas, mas porque você vê o mundo de forma diferente.
+
+A gente só era amigo.
+
+Na época você começou a me zoar me chamando de "mozão". Acho que nem você sabia que de facto isso daria em algo.
+A gente saía algumas vezes à noite. Na época ingeríamos álcool e lembro-me da primeira vez em que nós trocamos olhares diferentes: sangria no Piolho.
+A gente não bebe mais sangria e eu nunca mais voltei no Piolho.
+08/02/2020: Uma festa despretensiosa. Álcool na cabeça — não sabemos a procedência — e demos o nosso primeiro beijo.
+Acho que nenhum de nós acreditava que passaria dali.
+
+Eternos soninhos no jardim da FEUP. Risadas e estudos na biblioteca com barras de chocolate. Marmitas na cantina.
+
+Mas isto não é necessariamente sobre a nossa história.
+
+É sobre como você mudou a minha história.`
       },
 
       ribeira: {
         number: "02",
-        title: "Ribeira",
+        title: "Ribeira — Cais de Gaia",
         photo: "",
-        text: `COLOQUE AQUI O TEXTO SOBRE A RIBEIRA.
+        text: `
+        
+A Ribeira foi um dos nossos primeiros spots.
 
-Este espaço pode ser sobre qualquer coisa que
-você queira contar ou revelar nesta parada.`
+Nos encontrávamos como amigos, conversávamos, até termos um lugar especial que, anos depois, você eternizou com um pedido de casamento.
+
+Mas ali me lembro da época em que fomos nos conhecendo.
+
+Jovens, despretensiosos.
+
+Ali foi quando confessamos nossos primeiros problemas de relação dentro de casa — nos aproximamos.
+
+Ali acho que foi um dos primeiros lugares em que nos desconectamos do mundo e começamos a nos conectar.
+
+Ali te vi vulnerável.
+
+Obrigada por ter pegado todos aqueles comboios tarde da noite.
+
+Pelas longas conversas e trocas nas noites de verão.
+
+Acho que ali começou a nossa intimidade.
+
+Eterno Cais de Gaia.`
       },
 
       aguda: {
         number: "03",
         title: "Praia da Aguda",
         photo: "",
-        text: `COLOQUE AQUI O TEXTO SOBRE A PRAIA DA AGUDA.
+        text: `GAROTO DE AGUDA
 
-Este espaço pode ser completamente diferente
-dos outros dois.`
+Difícil falar da gente sem falar de Aguda.
+
+Lembro de uma das primeiras cartas que te escrevi. Enderecei para "Garoto de Aguda". KKKK. Acho que nunca te entreguei. Eu tinha vergonha.
+
+Eu usava como desculpa ir caminhar na praia para te encontrar. Muitas vezes funcionou. Você foi de facto me encontrar.
+
+Nas praias caminhamos, conversamos, andamos de bike, passeamos cachorros e crianças — kkkkk, baby Pipa.
+
+Acho que este lugar será eternamente nostálgico para a gente.
+
+Em Aguda conheci seus pais e você me deu uma nova família.
+Em Aguda dividimos casa por quase um ano — uma das nossas temporadas mais longas.
+
+Acho que Aguda fez parte do nosso amadurecimento.
+Acho que ela conheceu versões nossas.
+
+Em Aguda fui me apaixonando por você e pelo seu jeitinho.
+
+Eternamente garoto de Aguda.`
       }
 
     };
@@ -607,22 +661,37 @@ dos outros dois.`
     }
 
 
-    function showMap() {
+    function showScreen(screen) {
 
       hideAllScreens();
 
-      mapScreen.classList.add("active");
+      screen.classList.add("active");
 
-      window.scrollTo(0, 0);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    function showMap() {
+
+      showScreen(mapScreen);
 
     }
 
 
     function openLocation(locationName) {
 
-      const location = locations[locationName];
+      const location =
+        locations[locationName];
 
       if (!location) {
+        console.error(
+          "Parada não encontrada:",
+          locationName
+        );
         return;
       }
 
@@ -636,7 +705,10 @@ dos outros dois.`
         location.text;
 
 
-      if (location.photo) {
+      if (
+        location.photo &&
+        location.photo.trim() !== ""
+      ) {
 
         letterPhoto.src =
           location.photo;
@@ -654,11 +726,7 @@ dos outros dois.`
       }
 
 
-      hideAllScreens();
-
-      letterScreen.classList.add("active");
-
-      window.scrollTo(0, 0);
+      showScreen(letterScreen);
 
     }
 
