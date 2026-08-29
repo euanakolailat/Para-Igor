@@ -268,6 +268,40 @@
     }
 
     /* =========================
+       BOTÃO CONTINUAR
+    ========================= */
+
+    .continue-area {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 35px;
+      border-top: 1px solid var(--line);
+    }
+
+    .continue-button {
+      border: 1px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      padding: 15px 32px;
+
+      cursor: pointer;
+
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+
+      transition:
+        background .25s ease,
+        color .25s ease;
+    }
+
+    .continue-button:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    /* =========================
        MOBILE
     ========================= */
 
@@ -327,6 +361,7 @@
         font-size: 17px;
         line-height: 1.8;
       }
+
     }
 
   </style>
@@ -337,138 +372,153 @@
 
   <main class="page">
 
-```
-<div class="content">
+    <div class="content">
 
-  <div class="eyebrow">
-    uma carta para você
-  </div>
+      <div class="eyebrow">
+        uma carta para você
+      </div>
 
-  <p class="intro">
-    Algumas coisas eu queria conseguir te dizer olhando nos seus olhos.
-  </p>
+      <p class="intro">
+        Algumas coisas eu queria conseguir te dizer olhando nos seus olhos.
+      </p>
 
 
-  <!-- =========================
-       ENVELOPE
-  ========================= -->
+      <!-- =========================
+           ENVELOPE
+      ========================= -->
 
-  <div
-    class="envelope-area"
-    id="envelope"
-  >
+      <div
+        class="envelope-area"
+        id="envelope"
+      >
 
-    <div class="envelope">
+        <div class="envelope">
 
-      <div class="letter-paper">
+          <div class="letter-paper">
 
-        <p>
-          Falar de você é sempre fácil.
-        </p>
+            <p>
+              Falar de você é sempre fácil.
+            </p>
+
+          </div>
+
+          <div class="envelope-flap"></div>
+
+          <div class="envelope-front"></div>
+
+          <div class="seal">
+            ♥
+          </div>
+
+        </div>
 
       </div>
 
-      <div class="envelope-flap"></div>
 
-      <div class="envelope-front"></div>
-
-      <div class="seal">
-        ♥
+      <div class="click-text">
+        clique para abrir
       </div>
+
+
+      <!-- =========================
+           CARTA
+      ========================= -->
+
+      <section
+        class="full-letter"
+        id="full-letter"
+      >
+
+        <div class="full-letter-inner">
+
+          <div class="letter-number">
+            CARTA 04
+          </div>
+
+          <h1>
+            Falar de você
+          </h1>
+
+          <div class="letter-text">
+
+            <p>
+              Na verdade, eu facilmente seria monotemática sobre você.
+              Você é a minha pessoa favorita no mundo.
+            </p>
+
+            <p>
+              Eu queria que você conseguisse se ver com os meus olhos.
+            </p>
+
+            <p>
+              Que conseguisse enxergar o seu potencial, as suas habilidades,
+              a sua beleza e tudo o que você ainda vai consquistar.
+            </p>
+
+            <p>
+              Nestes 26 anos, que infelizmente não estou fisicamente contigo, te desejo muitas coisas:
+            </p>
+
+            <p>
+              Te desejo felicidade, e que a encontre nos lugares mais improváveis.
+              Que a barriga doa de tanto rir, e que os olhos fiquem marejados de alegria.
+            </p>
+
+            <p>
+              Te desejo saúde e coragem para continuar atrás dos seus sonhos e objetivos.
+              E resiliência, para criar novas rotas, aproveitar o caminho, mesmo quando achar que está perdido.
+            </p>
+
+            <p>
+              Desejo que você sinta orgulho de si próprio, porque você é mais do que incrível.
+              Mas acima de tudo, que sinta o amor que te cerca.
+              Que você olhe ao seu redor, perceba e receba a sorte de comemorar este dia ao lado da sua família.
+            </p>
+
+            <p>
+              Desejo que você comemore. Que você reconheça o valor e sinta uma energia vital em celebrar as pequenas e grandes vitórias.
+            </p>
+
+            <p>
+              Te desejo uma vida muito bem vivida, e que encontre o lado extraordinário do ordinário do dia a dia.
+            </p>
+
+            <p>
+              FELIZ ANIVERSÁRIO!
+            </p>
+
+          </div>
+
+          <div class="signature">
+            Com amor e saudade,<br>
+            Sua Ana
+          </div>
+
+
+          <!-- =========================
+               CONTINUAR PARA PARTE 5
+          ========================= -->
+
+          <div class="continue-area">
+
+            <button
+              id="continue-button"
+              class="continue-button"
+              type="button"
+            >
+              Continuar →
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
 
     </div>
-
-  </div>
-
-
-  <div class="click-text">
-    clique para abrir
-  </div>
-
-
-  <!-- =========================
-       CARTA
-  ========================= -->
-
-  <section
-    class="full-letter"
-    id="full-letter"
-  >
-
-    <div class="full-letter-inner">
-
-      <div class="letter-number">
-        CARTA 04
-      </div>
-
-      <h1>
-        Falar de você
-      </h1>
-
-      <div class="letter-text">
-
-        
-        <p>
-          Na verdade, eu facilmente seria monotemática sobre você.
-          Você é a minha pessoa favorita no mundo.
-        </p>
-
-        <p>
-          Eu queria que você conseguisse se ver com os meus olhos.
-        </p>
-
-        <p>
-          Que conseguisse enxergar o seu potencial, as suas habilidades,
-          a sua beleza e tudo o que você ainda vai consquistar.
-        </p>
-
-        <p>
-          Nestes 26 anos, que infelizmente não estou fisicamente contigo, te desejo muitas coisas:
-        </p>
-
-        <p>
-          Te desejo felicidade, e que a encontre nos lugares mais improváveis.
-          Que a barriga doa de tanto rir, e que os olhos fiquem marejados de alegria.
-        </p>
-
-        <p>
-          Te desejo saúde e coragem para continuar atrás dos seus sonhos e objetivos.
-          E resiliência, para criar novas rotas, aproveitar o caminho, mesmo quando achar que está perdido.
-        </p>
-
-        <p>
-          Desejo que você sinta orgulho de si próprio, porque você é mais do que incrível.
-          Mas acima de tudo, que sinta o amor que te cerca.
-          Que você olhe ao seu redor, perceba e receba a sorte de comemorar este dia ao lado da sua família.
-        </p>
-
-        <p>
-          Desejo que você comemore. Que você reconheça o valor e sinta uma energia vital em celebrar as pequenas e grandes vitórias.
-        </p>
-        
-        <p>
-          Te desejo uma vida muito bem vivida, e que encontre o lado extraordinário do ordinário do dia a dia.
-        </p>
-
-        <p>
-          FELIZ ANIVERSÁRIO!
-        </p>
-        
-      </div>
-
-      <div class="signature">
-        Com amor e saudade,<br>
-        Sua Ana
-      </div>
-
-    </div>
-
-  </section>
-
-</div>
-```
 
   </main>
+
 
   <script>
 
@@ -478,6 +528,13 @@
     const fullLetter =
       document.getElementById("full-letter");
 
+    const continueButton =
+      document.getElementById("continue-button");
+
+
+    /* =========================
+       ABRIR ENVELOPE
+    ========================= */
 
     envelope.addEventListener("click", function() {
 
@@ -498,6 +555,17 @@
         });
 
       }, 900);
+
+    });
+
+
+    /* =========================
+       IR PARA PARTE 5
+    ========================= */
+
+    continueButton.addEventListener("click", function() {
+
+      window.location.href = "parte5.html";
 
     });
 
