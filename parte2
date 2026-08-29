@@ -1,0 +1,168 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Uma coisa que eu lembro</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --paper: #f5f1e9;
+      --ink: #292724;
+      --muted: #77716a;
+      --line: #c9c1b6;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+    }
+
+    .letter {
+      width: 100%;
+      max-width: 720px;
+      background: #faf7f0;
+      border: 1px solid var(--line);
+      padding: clamp(30px, 7vw, 70px);
+      box-shadow: 0 20px 60px rgba(40,35,30,.08);
+    }
+
+    .letter-number {
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+
+    .letter h1 {
+      font-size: clamp(42px, 8vw, 64px);
+      font-weight: normal;
+      line-height: 1;
+      margin-bottom: 40px;
+    }
+
+    .letter-content {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #4d4842;
+      white-space: pre-line;
+    }
+
+    .next-button {
+      display: inline-block;
+      margin-top: 45px;
+      border: 1px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      padding: 14px 30px;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: .25s;
+    }
+
+    .next-button:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    @media (max-width: 650px) {
+
+      .screen {
+        padding: 18px;
+      }
+
+      .letter {
+        padding: 30px 24px;
+      }
+
+      .letter-content {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="screen">
+
+    <article class="letter">
+
+      <div class="letter-number">
+        PARTE 02
+      </div>
+
+      <h1>
+        Uma coisa que eu lembro
+      </h1>
+
+      <div class="letter-content">
+
+Eu lembro de você antes de saber que ia te amar.
+
+Lembro de como você falava das coisas que gostava.
+Lembro da maneira como você defendia suas ideias.
+Lembro de você fazendo alguma coisa completamente específica que hoje eu reconheço 
+como “muito você" - como o jeitinho específico que você mexe as mãos, ou a forma como você viaja mentalmente.
+
+É engraçado olhar para trás e perceber que a pessoa por quem eu me apaixonei já estava inteira ali: seu senso de humor,
+sua habilidade em dizer não, sua sensibilidade, olhar profundo e uma leveza de ser.
+
+Eu lembro de uma época em que eu não sabia que sentiria saudade de você.
+Não porque você não fosse importante.
+Mas porque eu simplesmente não conseguia imaginar a minha vida tendo um “antes” e um “depois” de você.
+
+Hoje existem coisas que eu vejo e automaticamente penso em você:
+Lugares.
+Músicas.
+Comidas.
+Frases.
+Até maneiras específicas de alguém falar.
+
+E talvez essa seja uma das formas mais estranhas de perceber que alguém entrou de verdade na nossa vida:
+quando o mundo começa a ficar cheio de pequenas coisas que têm o nome daquela pessoa, mesmo quando ela não está ali.
+
+Como eu disse você não estava nos meus planos. Eu lutei para não me envolver emocionalmente, e quando vi, lá estava eu:
+escrevendo cartinhas para o garoto de aguda, gravando vídeos para pedir desculpas, pegando comboios para ir te ver...
+
+Acho lindo pensar que nós "crescemos" juntos. Nós amadurecemos juntos.
+
+      </div>
+
+      <a
+        href="parte3.html"
+        class="next-button"
+      >
+        Continuar →
+      </a>
+
+    </article>
+
+  </main>
+
+</body>
+</html>
+```
