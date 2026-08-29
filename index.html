@@ -1,108 +1,626 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Para Igor</title>  <style>
+
+  <title>Para Igor</title>
+
+  <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    :root {
+      --paper: #f5f1e9;
+      --ink: #292724;
+      --muted: #77716a;
+      --line: #c9c1b6;
+      --accent: #8b6f5a;
+    }
+
     body {
       min-height: 100vh;
-      background: #f7f3ed;
-      color: #292521;
+      background: var(--paper);
+      color: var(--ink);
       font-family: Georgia, "Times New Roman", serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 24px;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 720px;
-      text-align: center;
-    }
-
-    .small {
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      opacity: 0.55;
-      margin-bottom: 28px;
-    }
-
-    h1 {
-      font-size: clamp(48px, 12vw, 86px);
-      font-weight: normal;
-      line-height: 0.95;
-      margin-bottom: 24px;
-    }
-
-    .subtitle {
-      font-size: 20px;
-      line-height: 1.6;
-      max-width: 520px;
-      margin: 0 auto 42px;
-      opacity: 0.75;
     }
 
     button {
-      border: 1px solid #292521;
-      background: transparent;
-      color: #292521;
-      padding: 16px 34px;
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.3s ease;
+      font: inherit;
     }
 
-    button:hover {
-      background: #292521;
-      color: #f7f3ed;
-    }
-
-    #message {
+    .screen {
+      min-height: 100vh;
       display: none;
-      margin-top: 48px;
+      padding: 28px;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    /* =========================
+       ABERTURA
+    ========================= */
+
+    #opening {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .opening-inner {
+      max-width: 680px;
+    }
+
+    .eyebrow {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: clamp(58px, 14vw, 110px);
+      font-weight: normal;
+      line-height: .9;
+      margin-bottom: 30px;
+    }
+
+    .opening-description {
+      max-width: 500px;
+      margin: 0 auto 45px;
+      font-size: 19px;
+      line-height: 1.7;
+      color: #5e5953;
+    }
+
+    .main-button {
+      border: 1px solid var(--ink);
+      background: transparent;
+      padding: 16px 34px;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: .25s;
+    }
+
+    .main-button:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    /* =========================
+       MAPA
+    ========================= */
+
+    #map-screen {
+      flex-direction: column;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .map-header {
+      text-align: center;
+      padding: 35px 10px 20px;
+    }
+
+    .map-header h2 {
+      font-size: clamp(36px, 7vw, 64px);
+      font-weight: normal;
+      margin-bottom: 12px;
+    }
+
+    .map-header p {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .map {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      height: 620px;
+      margin: 20px auto 0;
+      overflow: hidden;
+
+      /* aparência de mapa */
+      background:
+        linear-gradient(25deg, transparent 48%, rgba(139,111,90,.12) 49%, transparent 50%),
+        linear-gradient(-15deg, transparent 48%, rgba(139,111,90,.09) 49%, transparent 50%),
+        #e9e4db;
+
+      border: 1px solid var(--line);
+    }
+
+    /* Rio */
+    .river {
+      position: absolute;
+      right: -5%;
+      top: -10%;
+      width: 35%;
+      height: 125%;
+      background: #d7d9d5;
+      border-left: 1px solid #c2c4c0;
+      transform: rotate(8deg);
+    }
+
+    /* Linhas decorativas */
+    .road {
+      position: absolute;
+      height: 1px;
+      background: rgba(70,65,60,.18);
+      transform-origin: left center;
+    }
+
+    .road.one {
+      width: 75%;
+      top: 40%;
+      left: 5%;
+      transform: rotate(-12deg);
+    }
+
+    .road.two {
+      width: 65%;
+      top: 65%;
+      left: 2%;
+      transform: rotate(8deg);
+    }
+
+    .road.three {
+      width: 70%;
+      top: 25%;
+      left: 10%;
+      transform: rotate(18deg);
+    }
+
+    /* Pontos */
+
+    .location {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      text-align: center;
+      color: var(--ink);
+      z-index: 5;
+    }
+
+    .location-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--ink);
+      border: 4px solid var(--paper);
+      box-shadow: 0 0 0 1px var(--ink);
+      margin: 0 auto 10px;
+      transition: transform .25s;
+    }
+
+    .location:hover .location-dot {
+      transform: scale(1.3);
+    }
+
+    .location-name {
+      display: block;
+      white-space: nowrap;
+      font-size: 14px;
+      background: rgba(245,241,233,.9);
+      padding: 5px 9px;
+    }
+
+    .location-subtitle {
+      display: block;
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    /* posições */
+
+    .feup {
+      left: 29%;
+      top: 31%;
+    }
+
+    .ribeira {
+      left: 66%;
+      top: 67%;
+    }
+
+    .aguda {
+      left: 17%;
+      top: 82%;
+    }
+
+    /* =========================
+       CARTA / PARADA
+    ========================= */
+
+    #letter-screen {
+      align-items: center;
+      justify-content: center;
+    }
+
+    .letter {
+      width: 100%;
+      max-width: 720px;
+      background: #faf7f0;
+      border: 1px solid var(--line);
+      padding: clamp(30px, 7vw, 70px);
+      box-shadow: 0 20px 60px rgba(40,35,30,.08);
+    }
+
+    .letter-number {
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+
+    .letter h2 {
+      font-size: clamp(36px, 7vw, 58px);
+      font-weight: normal;
+      margin-bottom: 30px;
+    }
+
+    .letter-content {
       font-size: 18px;
       line-height: 1.8;
+      color: #4d4842;
+      white-space: pre-line;
     }
 
-    .heart {
-      font-size: 28px;
-      margin-top: 30px;
+    .letter-photo {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      margin: 30px 0;
+      display: none;
     }
-  </style></head><body>  <main class="container"><div class="small">um presente para você</div>
 
-<h1>Para Igor</h1>
-
-<p class="subtitle">
-  Eu queria conseguir te entregar isso pessoalmente.
-  Como ainda não posso, encontrei outra maneira de chegar até você.
-</p>
-
-<button onclick="startExperience()">
-  Começar
-</button>
-
-<div id="message">
-  <p>
-    Feliz aniversário, meu amor.
-  </p>
-
-  <div class="heart">♡</div>
-</div>
-
-  </main>  <script>
-    function startExperience() {
-      document.getElementById("message").style.display = "block";
+    .back-button {
+      margin-top: 40px;
+      border: none;
+      border-bottom: 1px solid var(--ink);
+      background: transparent;
+      padding: 8px 0;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
-  </script></body>
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 650px) {
+
+      .screen {
+        padding: 18px;
+      }
+
+      .map {
+        height: 70vh;
+        min-height: 480px;
+      }
+
+      .location-name {
+        font-size: 12px;
+      }
+
+      .location-subtitle {
+        font-size: 8px;
+      }
+
+      .letter {
+        padding: 30px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       ABERTURA
+  ========================= -->
+
+  <section id="opening" class="screen active">
+
+    <div class="opening-inner">
+
+      <div class="eyebrow">
+        um presente para você
+      </div>
+
+      <h1>Para Igor</h1>
+
+      <p class="opening-description">
+        Hoje eu quero te levar a alguns lugares.
+        Alguns você conhece muito bem.
+        Outros talvez você precise olhar de um jeito diferente.
+      </p>
+
+      <button class="main-button" onclick="showMap()">
+        Começar
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       MAPA
+  ========================= -->
+
+  <section id="map-screen" class="screen">
+
+    <div class="map-header">
+
+      <div class="eyebrow">
+        primeira parada
+      </div>
+
+      <h2>Porto</h2>
+
+      <p>
+        Escolha um ponto para continuar.
+      </p>
+
+    </div>
+
+    <div class="map">
+
+      <div class="river"></div>
+
+      <div class="road one"></div>
+      <div class="road two"></div>
+      <div class="road three"></div>
+
+
+      <!-- FEUP -->
+
+      <button
+        class="location feup"
+        onclick="openLocation('feup')"
+      >
+
+        <div class="location-dot"></div>
+
+        <span class="location-name">
+          Faculdade de Engenharia
+        </span>
+
+        <span class="location-subtitle">
+          onde tudo começou
+        </span>
+
+      </button>
+
+
+      <!-- RIBEIRA -->
+
+      <button
+        class="location ribeira"
+        onclick="openLocation('ribeira')"
+      >
+
+        <div class="location-dot"></div>
+
+        <span class="location-name">
+          Ribeira
+        </span>
+
+        <span class="location-subtitle">
+          uma memória
+        </span>
+
+      </button>
+
+
+      <!-- AGUDA -->
+
+      <button
+        class="location aguda"
+        onclick="openLocation('aguda')"
+      >
+
+        <div class="location-dot"></div>
+
+        <span class="location-name">
+          Praia da Aguda
+        </span>
+
+        <span class="location-subtitle">
+          casa
+        </span>
+
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CARTA
+  ========================= -->
+
+  <section id="letter-screen" class="screen">
+
+    <article class="letter">
+
+      <div id="letter-number" class="letter-number"></div>
+
+      <h2 id="letter-title"></h2>
+
+      <img
+        id="letter-photo"
+        class="letter-photo"
+        src=""
+        alt=""
+      >
+
+      <div
+        id="letter-content"
+        class="letter-content"
+      ></div>
+
+      <button
+        class="back-button"
+        onclick="showMap()"
+      >
+        ← Voltar ao mapa
+      </button>
+
+    </article>
+
+  </section>
+
+
+  <script>
+
+    /*
+      ==========================================
+      CONTEÚDO DAS PARADAS
+      ==========================================
+
+      É AQUI que você poderá escrever seus textos
+      depois.
+
+      Você não precisa mexer no resto do código.
+
+      photo pode ficar vazio por enquanto.
+    */
+
+    const locations = {
+
+      feup: {
+        number: "01",
+        title: "Faculdade de Engenharia",
+        photo: "",
+        text: `COLOQUE AQUI O TEXTO SOBRE A FEUP.
+
+Você pode escrever quantos parágrafos quiser.
+
+Quando formos editar o site, podemos acrescentar
+fotos, pistas, perguntas, vídeos e outras interações.`
+      },
+
+      ribeira: {
+        number: "02",
+        title: "Ribeira",
+        photo: "",
+        text: `COLOQUE AQUI O TEXTO SOBRE A RIBEIRA.
+
+Este espaço pode ser sobre qualquer coisa que
+você queira contar ou revelar nesta parada.`
+      },
+
+      aguda: {
+        number: "03",
+        title: "Praia da Aguda",
+        photo: "",
+        text: `COLOQUE AQUI O TEXTO SOBRE A PRAIA DA AGUDA.
+
+Este espaço pode ser completamente diferente
+dos outros dois.`
+      }
+
+    };
+
+
+    /*
+      ==========================================
+      NAVEGAÇÃO
+      ==========================================
+    */
+
+    function hideAllScreens() {
+
+      document
+        .querySelectorAll(".screen")
+        .forEach(screen => {
+          screen.classList.remove("active");
+        });
+
+    }
+
+
+    function showMap() {
+
+      hideAllScreens();
+
+      document
+        .getElementById("map-screen")
+        .classList.add("active");
+
+      window.scrollTo(0, 0);
+
+    }
+
+
+    function openLocation(locationName) {
+
+      const location = locations[locationName];
+
+      if (!location) return;
+
+      document
+        .getElementById("letter-number")
+        .textContent = "PARADA " + location.number;
+
+      document
+        .getElementById("letter-title")
+        .textContent = location.title;
+
+      document
+        .getElementById("letter-content")
+        .textContent = location.text;
+
+      const photo =
+        document.getElementById("letter-photo");
+
+      if (location.photo) {
+
+        photo.src = location.photo;
+        photo.style.display = "block";
+
+      } else {
+
+        photo.style.display = "none";
+
+      }
+
+      hideAllScreens();
+
+      document
+        .getElementById("letter-screen")
+        .classList.add("active");
+
+      window.scrollTo(0, 0);
+
+    }
+
+  </script>
+
+</body>
 </html>
