@@ -5,10 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Pelo Mundo — Para Igor</title>
+  <title>Pelo mundo — Para Igor</title>
 
   <style>
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -37,7 +36,7 @@
       width: 100%;
       max-width: 1100px;
       margin: 0 auto;
-      padding: 55px 28px 80px;
+      padding: 60px 28px 80px;
     }
 
     .header {
@@ -51,21 +50,21 @@
       letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 22px;
+      margin-bottom: 25px;
     }
 
     h1 {
       font-size: clamp(48px, 9vw, 82px);
       font-weight: normal;
       line-height: .95;
-      margin-bottom: 25px;
+      margin-bottom: 22px;
     }
 
     .intro {
       max-width: 560px;
       margin: 0 auto;
-      color: #5e5953;
-      font-size: 18px;
+      color: var(--muted);
+      font-size: 17px;
       line-height: 1.7;
     }
 
@@ -76,161 +75,130 @@
     .gallery {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 28px;
-      max-width: 900px;
-      margin: 0 auto;
+      gap: 22px;
     }
 
-    .memory {
+    .place {
+      position: relative;
       border: none;
-      background: transparent;
+      padding: 0;
+      background: none;
       cursor: pointer;
+      overflow: hidden;
       text-align: left;
-      font-family: inherit;
     }
 
-    .photo {
+    .place-image {
+      position: relative;
       width: 100%;
       aspect-ratio: 4 / 3;
-      background: #e5e0d7;
-      border: 1px solid var(--line);
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
-      transition: transform .25s, box-shadow .25s;
+      background: #ded9d0;
     }
 
-    .photo img {
+    .place-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: none;
+      display: block;
+      transition: transform .6s ease;
     }
 
-    .photo-placeholder {
+    .place:hover img {
+      transform: scale(1.04);
+    }
+
+    .place-info {
+      padding: 15px 4px 5px;
+    }
+
+    .place-number {
       font-family: Arial, sans-serif;
-      font-size: 10px;
+      font-size: 9px;
       letter-spacing: 2px;
-      text-transform: uppercase;
       color: var(--muted);
+      display: block;
+      margin-bottom: 6px;
     }
 
-    .memory:hover .photo {
-      transform: translateY(-4px);
-      box-shadow: 0 15px 35px rgba(40,35,30,.12);
+    .place-name {
+      font-size: 24px;
+      font-weight: normal;
     }
 
-    .memory-info {
-      padding: 14px 4px 0;
-    }
-
-    .memory-place {
-      font-size: 20px;
-    }
-
-    .memory-description {
+    .place-hint {
       font-family: Arial, sans-serif;
       font-size: 9px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--muted);
-      margin-top: 5px;
+      margin-top: 6px;
+      display: block;
     }
 
     /* =========================
-       MODAL / MEMÓRIA
+       CARTA / MODAL
     ========================= */
 
-    .memory-overlay {
+    .modal {
       position: fixed;
       inset: 0;
       background: rgba(41,39,36,.55);
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 25px;
       z-index: 20;
     }
 
-    .memory-overlay.active {
+    .modal.active {
       display: flex;
     }
 
-    .memory-card {
+    .letter {
       width: 100%;
-      max-width: 650px;
+      max-width: 680px;
       max-height: 90vh;
       overflow-y: auto;
       background: #faf7f0;
       border: 1px solid var(--line);
-      padding: clamp(30px, 6vw, 60px);
-      box-shadow: 0 25px 70px rgba(0,0,0,.18);
+      padding: clamp(30px, 7vw, 65px);
+      box-shadow: 0 25px 80px rgba(0,0,0,.18);
       position: relative;
     }
 
-    .memory-card-number {
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 22px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
       font-family: Arial, sans-serif;
-      font-size: 9px;
+      font-size: 20px;
+      color: var(--muted);
+    }
+
+    .letter-number {
+      font-family: Arial, sans-serif;
+      font-size: 10px;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
-    .memory-card h2 {
-      font-size: clamp(34px, 6vw, 52px);
+    .letter h2 {
+      font-size: clamp(38px, 7vw, 58px);
       font-weight: normal;
-      line-height: 1;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
 
-    .memory-card-text {
+    .letter-content {
       font-size: 18px;
-      line-height: 1.8;
+      line-height: 1.85;
       color: #4d4842;
       white-space: pre-line;
-    }
-
-    .close-button {
-      margin-top: 35px;
-      border: none;
-      border-bottom: 1px solid var(--ink);
-      background: transparent;
-      padding: 8px 0;
-      cursor: pointer;
-      font-family: Arial, sans-serif;
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    /* =========================
-       CONTINUAR
-    ========================= */
-
-    .next-container {
-      text-align: center;
-      margin-top: 65px;
-    }
-
-    .next-button {
-      display: inline-block;
-      border: 1px solid var(--ink);
-      background: transparent;
-      color: var(--ink);
-      padding: 14px 30px;
-      text-decoration: none;
-      font-family: Arial, sans-serif;
-      font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      transition: .25s;
-    }
-
-    .next-button:hover {
-      background: var(--ink);
-      color: var(--paper);
     }
 
     /* =========================
@@ -243,25 +211,27 @@
         padding: 40px 18px 60px;
       }
 
+      .header {
+        margin-bottom: 40px;
+      }
+
       .gallery {
         grid-template-columns: 1fr;
-        gap: 35px;
+        gap: 30px;
       }
 
-      .intro {
-        font-size: 17px;
+      .place-name {
+        font-size: 22px;
       }
 
-      .memory-card {
-        padding: 30px 24px;
+      .modal {
+        padding: 15px;
       }
 
-      .memory-card-text {
-        font-size: 17px;
+      .letter {
+        padding: 45px 25px 35px;
       }
-
     }
-
   </style>
 </head>
 
@@ -276,271 +246,249 @@
     <header class="header">
 
       <div class="eyebrow">
-        PARTE 03
+        terceira parada
       </div>
 
-      <h1>
-        Pelo Mundo
-      </h1>
+      <h1>Pelo mundo</h1>
 
       <p class="intro">
-        Conhecer lugares ao seu lado
-        é certamente das minhas melhores memórias!
+        Talvez viajar nunca tenha sido sobre os lugares.
+        Talvez tenha sido sobre tudo aquilo que aconteceu
+        enquanto estávamos neles.
       </p>
 
     </header>
 
 
     <!-- =========================
-         FOTOS
+         GALERIA
     ========================= -->
 
     <section class="gallery">
 
 
-      <!-- FOTO 01 -->
+      <!-- PARANÁ -->
 
-      <button
-        class="memory"
-        type="button"
-        onclick="openMemory(0)"
-      >
+      <button class="place" type="button" onclick="openPlace('parana')">
 
-        <div class="photo">
-
-          <!--
-            QUANDO TIVER A FOTO,
-            COLOQUE O CAMINHO AQUI:
-
-            <img src="imagens/nome-da-foto.jpg" alt="Porto">
-          -->
-
-          <span class="photo-placeholder">
-            FOTO 01
-          </span>
-
+        <div class="place-image">
+          <img src="imagens/parana.jpg" alt="Paraná">
         </div>
 
-        <div class="memory-info">
+        <div class="place-info">
 
-          <div class="memory-place">
-            Porto
+          <span class="place-number">01</span>
+
+          <div class="place-name">
+            Paraná
           </div>
 
-          <div class="memory-description">
-            onde começou
-          </div>
+          <span class="place-hint">
+            clique para lembrar
+          </span>
 
         </div>
 
       </button>
 
 
-      <!-- FOTO 02 -->
+      <!-- RIO -->
 
-      <button
-        class="memory"
-        type="button"
-        onclick="openMemory(1)"
-      >
+      <button class="place" type="button" onclick="openPlace('rio')">
 
-        <div class="photo">
-
-          <span class="photo-placeholder">
-            FOTO 02
-          </span>
-
+        <div class="place-image">
+          <img src="imagens/rio.jpg" alt="Rio de Janeiro">
         </div>
 
-        <div class="memory-info">
+        <div class="place-info">
 
-          <div class="memory-place">
-            Argentina
+          <span class="place-number">02</span>
+
+          <div class="place-name">
+            Rio de Janeiro
           </div>
 
-          <div class="memory-description">
-            pelo caminho
-          </div>
+          <span class="place-hint">
+            clique para lembrar
+          </span>
 
         </div>
 
       </button>
 
 
-      <!-- FOTO 03 -->
+      <!-- PATAGÔNIA -->
 
-      <button
-        class="memory"
-        type="button"
-        onclick="openMemory(2)"
-      >
+      <button class="place" type="button" onclick="openPlace('patagonia')">
 
-        <div class="photo">
-
-          <span class="photo-placeholder">
-            FOTO 03
-          </span>
-
+        <div class="place-image">
+          <img src="imagens/patagonia.jpg" alt="Patagônia">
         </div>
 
-        <div class="memory-info">
+        <div class="place-info">
 
-          <div class="memory-place">
-            Peru
+          <span class="place-number">03</span>
+
+          <div class="place-name">
+            Patagônia
           </div>
 
-          <div class="memory-description">
-            uma aventura
-          </div>
+          <span class="place-hint">
+            clique para lembrar
+          </span>
 
         </div>
 
       </button>
 
 
-      <!-- FOTO 04 -->
+      <!-- COLÔMBIA -->
 
-      <button
-        class="memory"
-        type="button"
-        onclick="openMemory(3)"
-      >
+      <button class="place" type="button" onclick="openPlace('colombia')">
 
-        <div class="photo">
-
-          <span class="photo-placeholder">
-            FOTO 04
-          </span>
-
+        <div class="place-image">
+          <img src="imagens/colombia.jpg" alt="Colômbia">
         </div>
 
-        <div class="memory-info">
+        <div class="place-info">
 
-          <div class="memory-place">
+          <span class="place-number">04</span>
+
+          <div class="place-name">
             Colômbia
           </div>
 
-          <div class="memory-description">
-            outro pedaço do mundo
-          </div>
-
-        </div>
-
-      </button>
-
-
-      <!-- FOTO 05 -->
-
-      <button
-        class="memory"
-        type="button"
-        onclick="openMemory(4)"
-      >
-
-        <div class="photo">
-
-          <span class="photo-placeholder">
-            FOTO 05
+          <span class="place-hint">
+            clique para lembrar
           </span>
 
         </div>
 
-        <div class="memory-info">
-
-          <div class="memory-place">
-            Um lugar qualquer
-          </div>
-
-          <div class="memory-description">
-            uma memória
-          </div>
-
-        </div>
-
       </button>
 
 
-      <!-- FOTO 06 -->
+      <!-- PRAGA -->
 
-      <button
-        class="memory"
-        type="button"
-        onclick="openMemory(5)"
-      >
+      <button class="place" type="button" onclick="openPlace('praga')">
 
-        <div class="photo">
+        <div class="place-image">
+          <img src="imagens/praga.jpg" alt="Praga">
+        </div>
 
-          <span class="photo-placeholder">
-            FOTO 06
+        <div class="place-info">
+
+          <span class="place-number">05</span>
+
+          <div class="place-name">
+            Praga
+          </div>
+
+          <span class="place-hint">
+            clique para lembrar
           </span>
 
         </div>
 
-        <div class="memory-info">
+      </button>
 
-          <div class="memory-place">
-            Nós dois
+
+      <!-- NÁPOLES -->
+
+      <button class="place" type="button" onclick="openPlace('napoli')">
+
+        <div class="place-image">
+          <img src="imagens/napoli.jpg" alt="Nápoles">
+        </div>
+
+        <div class="place-info">
+
+          <span class="place-number">06</span>
+
+          <div class="place-name">
+            Napoli
           </div>
 
-          <div class="memory-description">
-            mais importante que o lugar
-          </div>
+          <span class="place-hint">
+            clique para lembrar
+          </span>
 
         </div>
 
       </button>
+
+
+      <!-- CUSCO -->
+
+      <button class="place" type="button" onclick="openPlace('cusco')">
+
+        <div class="place-image">
+          <img src="imagens/cusco.jpg" alt="Cusco">
+        </div>
+
+        <div class="place-info">
+
+          <span class="place-number">07</span>
+
+          <div class="place-name">
+            Cusco
+          </div>
+
+          <span class="place-hint">
+            clique para lembrar
+          </span>
+
+        </div>
+
+      </button>
+
+
+      <!-- NAZARÉ -->
+
+      <button class="place" type="button" onclick="openPlace('nazare')">
+
+        <div class="place-image">
+          <img src="imagens/nazare.jpg" alt="Nazaré">
+        </div>
+
+        <div class="place-info">
+
+          <span class="place-number">08</span>
+
+          <div class="place-name">
+            Nazaré
+          </div>
+
+          <span class="place-hint">
+            clique para lembrar
+          </span>
+
+        </div>
+
+      </button>
+
 
     </section>
-
-
-    <!-- =========================
-         CONTINUAR
-    ========================= -->
-
-    <div class="next-container">
-
-      <a
-        href="parte4.html"
-        class="next-button"
-      >
-        Continuar →
-      </a>
-
-    </div>
 
   </main>
 
 
   <!-- =========================
-       JANELA DAS MEMÓRIAS
+       MODAL
   ========================= -->
 
-  <div
-    id="memory-overlay"
-    class="memory-overlay"
-  >
+  <div id="modal" class="modal">
 
-    <article class="memory-card">
+    <article class="letter">
 
-      <div
-        id="memory-number"
-        class="memory-card-number"
-      ></div>
-
-      <h2 id="memory-title"></h2>
-
-      <div
-        id="memory-text"
-        class="memory-card-text"
-      ></div>
-
-      <button
-        class="close-button"
-        type="button"
-        onclick="closeMemory()"
-      >
-        Fechar
+      <button class="close" type="button" onclick="closeModal()">
+        ×
       </button>
+
+      <div id="letter-number" class="letter-number"></div>
+
+      <h2 id="letter-title"></h2>
+
+      <div id="letter-content" class="letter-content"></div>
 
     </article>
 
@@ -549,141 +497,180 @@
 
   <script>
 
-    /*
-      ==========================================
-      MEMÓRIAS
-      ==========================================
+    /* =========================
+       TEXTOS DAS VIAGENS
+    ========================= */
 
-      É AQUI que vamos escrever as mensagens
-      de cada lugar.
+    const places = {
 
-      Você pode escrever quantos parágrafos quiser.
-    */
+      parana: {
+        number: "01",
+        title: "Paraná",
+        text: `AQUI ENTRA O TEXTO SOBRE O PARANÁ.
 
-    const memories = [
+Pode escrever aqui tudo aquilo que você lembra dessa viagem.
 
-      {
-        number: "MEMÓRIA 01",
-        title: "Porto",
-        text: `COLOQUE AQUI A MEMÓRIA DO PORTO.
+Uma memória.
+Uma situação engraçada.
+Alguma coisa que ele fez.
+Alguma coisa que você sentiu.
 
-Pode ser uma história específica daquele lugar,
-uma coisa que aconteceu,
-ou simplesmente o que aquele lugar representa
-para você.`
+Não precisa ser sobre o lugar.
+É sobre vocês naquele lugar.`
       },
 
-      {
-        number: "MEMÓRIA 02",
-        title: "Argentina",
-        text: `COLOQUE AQUI A MEMÓRIA DA ARGENTINA.
+      rio: {
+        number: "02",
+        title: "Rio de Janeiro",
+        text: `AQUI ENTRA O TEXTO SOBRE O RIO DE JANEIRO.
 
-Pode falar sobre uma viagem,
-uma situação engraçada,
-um momento difícil,
-ou alguma coisa que você lembra
-quando pensa naquele lugar.`
+Uma lembrança que só vocês dois entendem.
+
+Pode ser uma história pequena.
+Às vezes são justamente essas que ficam.`
       },
 
-      {
-        number: "MEMÓRIA 03",
-        title: "Peru",
-        text: `COLOQUE AQUI A MEMÓRIA DO PERU.`
+      patagonia: {
+        number: "03",
+        title: "Patagônia",
+        text: `AQUI ENTRA O TEXTO SOBRE A PATAGÔNIA.
+
+Pode falar sobre alguma aventura,
+alguma dificuldade ou algum momento
+em que vocês perceberam que viajar juntos
+era diferente de simplesmente viajar.`
       },
 
-      {
-        number: "MEMÓRIA 04",
+      colombia: {
+        number: "04",
         title: "Colômbia",
-        text: `COLOQUE AQUI A MEMÓRIA DA COLÔMBIA.`
+        text: `AQUI ENTRA O TEXTO SOBRE A COLÔMBIA.
+
+Uma lembrança dessa viagem.
+
+Um lugar.
+Uma conversa.
+Uma situação completamente aleatória.
+
+Qualquer coisa que faça ele lembrar de vocês.`
       },
 
-      {
-        number: "MEMÓRIA 05",
-        title: "Um lugar qualquer",
-        text: `COLOQUE AQUI UMA OUTRA MEMÓRIA.`
+      praga: {
+        number: "05",
+        title: "Praga",
+        text: `AQUI ENTRA O TEXTO SOBRE PRAGA.
+
+Talvez uma lembrança pequena
+que ficou maior com o tempo.`
       },
 
-      {
-        number: "MEMÓRIA 06",
-        title: "Nós dois",
-        text: `COLOQUE AQUI A MEMÓRIA FINAL.
+      napoli: {
+        number: "06",
+        title: "Napoli",
+        text: `AQUI ENTRA O TEXTO SOBRE NAPOLI.
 
-Talvez aqui possamos fazer a transição
-para a ideia de HOME.
+Pode falar sobre a viagem,
+sobre vocês,
+ou simplesmente sobre uma memória
+que você não quer esquecer.`
+      },
 
-Não importa exatamente onde estávamos.
-Importava que estávamos juntos.`
+      cusco: {
+        number: "07",
+        title: "Cusco",
+        text: `AQUI ENTRA O TEXTO SOBRE CUSCO.
+
+Uma lembrança dessa viagem.
+
+Algo que você gostaria
+que ele pudesse enxergar novamente
+através dos seus olhos.`
+      },
+
+      nazare: {
+        number: "08",
+        title: "Nazaré",
+        text: `AQUI ENTRA O TEXTO SOBRE NAZARÉ.
+
+A última parada desta parte.
+
+E talvez uma lembrança que mostre
+que nunca foram os lugares.
+
+Foram vocês.`
       }
 
-    ];
+    };
 
 
-    /*
-      ==========================================
-      ABRIR MEMÓRIA
-      ==========================================
-    */
+    /* =========================
+       ELEMENTOS
+    ========================= */
 
-    function openMemory(index) {
+    const modal = document.getElementById("modal");
+    const letterNumber = document.getElementById("letter-number");
+    const letterTitle = document.getElementById("letter-title");
+    const letterContent = document.getElementById("letter-content");
 
-      const memory = memories[index];
 
-      if (!memory) return;
+    /* =========================
+       ABRIR CARTA
+    ========================= */
 
-      document.getElementById("memory-number").textContent =
-        memory.number;
+    function openPlace(placeName) {
 
-      document.getElementById("memory-title").textContent =
-        memory.title;
+      const place = places[placeName];
 
-      document.getElementById("memory-text").textContent =
-        memory.text;
+      if (!place) return;
 
-      document
-        .getElementById("memory-overlay")
-        .classList.add("active");
+      letterNumber.textContent =
+        "MEMÓRIA " + place.number;
 
+      letterTitle.textContent =
+        place.title;
+
+      letterContent.textContent =
+        place.text;
+
+      modal.classList.add("active");
+
+      document.body.style.overflow = "hidden";
     }
 
 
-    /*
-      ==========================================
-      FECHAR MEMÓRIA
-      ==========================================
-    */
+    /* =========================
+       FECHAR CARTA
+    ========================= */
 
-    function closeMemory() {
+    function closeModal() {
 
-      document
-        .getElementById("memory-overlay")
-        .classList.remove("active");
+      modal.classList.remove("active");
 
+      document.body.style.overflow = "";
     }
 
 
-    /*
-      CLICAR FORA DA CARTA FECHA
-    */
+    /* =========================
+       CLICAR FORA DA CARTA
+    ========================= */
 
-    document
-      .getElementById("memory-overlay")
-      .addEventListener("click", function(event) {
+    modal.addEventListener("click", function(event) {
 
-        if (event.target === this) {
-          closeMemory();
-        }
+      if (event.target === modal) {
+        closeModal();
+      }
 
-      });
+    });
 
 
-    /*
-      ESC FECHA
-    */
+    /* =========================
+       ESC FECHA
+    ========================= */
 
     document.addEventListener("keydown", function(event) {
 
       if (event.key === "Escape") {
-        closeMemory();
+        closeModal();
       }
 
     });
