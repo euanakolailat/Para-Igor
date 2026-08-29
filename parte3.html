@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -99,6 +100,11 @@
       height: 230px;
       object-fit: cover;
       display: block;
+    }
+
+    /* Enquadramento especial de Nazaré */
+    .card-nazare img {
+      object-position: center top;
     }
 
     .photo-card span {
@@ -275,32 +281,36 @@
     }
 
   </style>
+
 </head>
 
-
 <body>
-
 
   <!-- =========================
        MÚSICA
   ========================= -->
 
-  <audio
-    id="music"
-    src="imagens/home.mp3"
-    autoplay
-    loop
-  ></audio>
+<audio
+id="music"
+src="imagens/home.mp3"
+autoplay
+loop
 
-  <button
-    id="music-button"
-    class="music-button"
-    type="button"
-    aria-label="Pausar música"
-  >
-    ♪
+> </audio>
+
+<button
+id="music-button"
+class="music-button"
+type="button"
+aria-label="Pausar música"
+
+>
+
+```
+♪
+```
+
   </button>
-
 
   <!-- =========================
        CABEÇALHO
@@ -308,22 +318,23 @@
 
   <header class="header">
 
-    <div class="eyebrow">
-      uma coisa que eu lembro
-    </div>
+```
+<div class="eyebrow">
+  Com você
+</div>
 
-    <h1>Home</h1>
+<h1>Pelo Mundo</h1>
 
-    <p class="intro">
-      A gente sempre esteve indo para algum lugar.
-      Porto, Paraná, Rio, Patagônia, Colômbia, Praga,
-      Napoli, Cusco, Nazaré...
-      <br><br>
-      Mas acho que nunca foi realmente sobre os lugares.
-    </p>
+<p class="intro">
+  A gente se conheceu no Porto e resolveu criar memórias em diferentes lugares:
+  Espanha, Itália, França, Alemanha, República Tcheca,
+  Brasil, Argentina, Peru, Colômbia...
+  <br><br>
+  Eu rodaria o mundo do teu lado!
+</p>
+```
 
   </header>
-
 
   <!-- =========================
        GALERIA
@@ -331,121 +342,120 @@
 
   <main class="gallery">
 
+```
+<!-- PARANÁ -->
 
-    <!-- PARANÁ -->
+<div class="photo-card card-parana">
 
-    <div class="photo-card card-parana">
+  <img
+    src="imagens/parana.jpg"
+    alt="Paraná"
+  >
 
-      <img
-        src="imagens/parana.jpg"
-        alt="Paraná"
-      >
+  <span>Paraná</span>
 
-      <span>Paraná</span>
-
-    </div>
-
-
-    <!-- RIO -->
-
-    <div class="photo-card card-rio">
-
-      <img
-        src="imagens/rio.jpg"
-        alt="Rio de Janeiro"
-      >
-
-      <span>Rio de Janeiro</span>
-
-    </div>
+</div>
 
 
-    <!-- PATAGÔNIA -->
+<!-- RIO -->
 
-    <div class="photo-card card-patagonia">
+<div class="photo-card card-rio">
 
-      <img
-        src="imagens/patagonia.jpg"
-        alt="Patagônia"
-      >
+  <img
+    src="imagens/rio.jpg"
+    alt="Rio de Janeiro"
+  >
 
-      <span>Patagônia</span>
+  <span>Rio de Janeiro</span>
 
-    </div>
-
-
-    <!-- COLÔMBIA -->
-
-    <div class="photo-card card-colombia">
-
-      <img
-        src="imagens/colombia.jpg"
-        alt="Colômbia"
-      >
-
-      <span>Colômbia</span>
-
-    </div>
+</div>
 
 
-    <!-- PRAGA -->
+<!-- PATAGÔNIA -->
 
-    <div class="photo-card card-praga">
+<div class="photo-card card-patagonia">
 
-      <img
-        src="imagens/praga.jpg"
-        alt="Praga"
-      >
+  <img
+    src="imagens/patagonia.jpg"
+    alt="Patagônia"
+  >
 
-      <span>Praga</span>
+  <span>Patagônia</span>
 
-    </div>
-
-
-    <!-- NAPOLI -->
-
-    <div class="photo-card card-napoli">
-
-      <img
-        src="imagens/napoli.jpg"
-        alt="Napoli"
-      >
-
-      <span>Napoli</span>
-
-    </div>
+</div>
 
 
-    <!-- CUSCO -->
+<!-- COLÔMBIA -->
 
-    <div class="photo-card card-cusco">
+<div class="photo-card card-colombia">
 
-      <img
-        src="imagens/cusco.jpg"
-        alt="Cusco"
-      >
+  <img
+    src="imagens/colombia.jpg"
+    alt="Colômbia"
+  >
 
-      <span>Cusco</span>
+  <span>Colômbia</span>
 
-    </div>
+</div>
 
 
-    <!-- NAZARÉ -->
+<!-- PRAGA -->
 
-    <div class="photo-card card-nazare">
+<div class="photo-card card-praga">
 
-      <img
-        src="imagens/nazare.jpg"
-        alt="Nazaré"
-      >
+  <img
+    src="imagens/praga.jpg"
+    alt="Praga"
+  >
 
-      <span>Nazaré</span>
+  <span>Praga</span>
 
-    </div>
+</div>
 
+
+<!-- NAPOLI -->
+
+<div class="photo-card card-napoli">
+
+  <img
+    src="imagens/napoli.jpg"
+    alt="Napoli"
+  >
+
+  <span>Napoli</span>
+
+</div>
+
+
+<!-- CUSCO -->
+
+<div class="photo-card card-cusco">
+
+  <img
+    src="imagens/cusco.jpg"
+    alt="Cusco"
+  >
+
+  <span>Cusco</span>
+
+</div>
+
+
+<!-- NAZARÉ -->
+
+<div class="photo-card card-nazare">
+
+  <img
+    src="imagens/nazare.jpg"
+    alt="Nazaré"
+  >
+
+  <span>Nazaré</span>
+
+</div>
+```
 
   </main>
-
 
   <!-- =========================
        FINAL
@@ -453,20 +463,21 @@
 
   <section class="ending">
 
-    <div class="ending-line"></div>
+```
+<div class="ending-line"></div>
 
-    <h2>Home is wherever I'm with you.</h2>
+<h2>Home is wherever I'm with you.</h2>
 
-    <p>
-      Talvez seja por isso que eu nunca tenha conseguido
-      escolher um lugar favorito.
-      <br><br>
-      Porque, no fim, o meu lugar favorito sempre foi
-      estar com você.
-    </p>
+<p>
+  Talvez seja por isso que eu nunca tenha conseguido
+  escolher um lugar favorito.
+  <br><br>
+  Porque, no fim, o meu lugar favorito sempre foi
+  estar com você.
+</p>
+```
 
   </section>
-
 
   <script>
 
@@ -480,22 +491,9 @@
     music.volume = 0.45;
 
 
-    /*
-      Tentativa de iniciar automaticamente.
-
-      Como ele chega nesta página através de uma
-      interação anterior no site, existe uma boa
-      chance de o navegador permitir o autoplay.
-    */
-
     window.addEventListener("load", () => {
 
       music.play().catch(() => {
-
-        /*
-          Se o navegador bloquear o autoplay,
-          o botão continua disponível para iniciar.
-        */
 
         musicButton.textContent = "▶";
 
@@ -523,7 +521,6 @@
     });
 
   </script>
-
 
 </body>
 </html>
