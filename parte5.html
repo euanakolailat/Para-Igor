@@ -1,0 +1,1224 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>32 dias longe de você — Para Igor</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --paper: #f5f1e9;
+      --paper-dark: #ebe5da;
+      --ink: #292724;
+      --muted: #77716a;
+      --line: #c9c1b6;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    /* =========================
+       CABEÇALHO
+    ========================= */
+
+    .header {
+      text-align: center;
+      padding: 70px 25px 45px;
+    }
+
+    .eyebrow {
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: clamp(44px, 9vw, 78px);
+      font-weight: normal;
+      line-height: 1;
+      margin-bottom: 25px;
+    }
+
+    .intro {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 18px;
+      line-height: 1.8;
+      color: #5e5953;
+    }
+
+    /* =========================
+       CONTADOR
+    ========================= */
+
+    .counter {
+      text-align: center;
+      margin: 5px auto 50px;
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* =========================
+       ENVELOPES
+    ========================= */
+
+    .envelopes {
+      width: min(950px, 90%);
+      margin: 0 auto 80px;
+
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+
+    .envelope {
+      position: relative;
+
+      min-height: 155px;
+
+      border: 1px solid var(--line);
+      background: #faf7f0;
+
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        background .3s ease;
+    }
+
+    .envelope:hover:not(.locked) {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 30px rgba(40,35,30,.13);
+    }
+
+    /* =========================
+       ENVELOPE ABERTO
+    ========================= */
+
+    .envelope-inner {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .envelope-number {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 15px;
+    }
+
+    .envelope-symbol {
+      font-size: 38px;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .envelope-label {
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* =========================
+       ENVELOPE BLOQUEADO
+    ========================= */
+
+    .envelope.locked {
+      background: var(--paper-dark);
+      cursor: default;
+      opacity: .65;
+    }
+
+    .envelope.locked .envelope-symbol {
+      font-size: 25px;
+    }
+
+    .locked-date {
+      font-family: Arial, sans-serif;
+      font-size: 8px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    /* =========================
+       MODAL / CARTINHA
+    ========================= */
+
+    .letter-overlay {
+      position: fixed;
+      inset: 0;
+
+      background: rgba(41,39,36,.45);
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      padding: 25px;
+
+      z-index: 100;
+    }
+
+    .letter-overlay.active {
+      display: flex;
+    }
+
+    .letter {
+      width: 100%;
+      max-width: 650px;
+
+      max-height: 85vh;
+      overflow-y: auto;
+
+      background: #faf7f0;
+      border: 1px solid var(--line);
+
+      padding: clamp(35px, 7vw, 65px);
+
+      box-shadow: 0 25px 70px rgba(20,18,15,.25);
+
+      animation: letterIn .45s ease;
+    }
+
+    @keyframes letterIn {
+
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+    }
+
+    .letter-day {
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+
+      margin-bottom: 25px;
+    }
+
+    .letter h2 {
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: normal;
+      margin-bottom: 30px;
+    }
+
+    .letter-text {
+      font-size: 18px;
+      line-height: 1.85;
+      color: #4d4842;
+      white-space: pre-line;
+    }
+
+    .close-letter {
+      margin-top: 40px;
+
+      border: none;
+      border-bottom: 1px solid var(--ink);
+
+      background: transparent;
+
+      padding: 8px 0;
+
+      cursor: pointer;
+
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+
+      color: var(--ink);
+    }
+
+    /* =========================
+       FINAL
+    ========================= */
+
+    .ending {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto;
+
+      padding: 20px 25px 100px;
+    }
+
+    .ending-line {
+      width: 50px;
+      height: 1px;
+
+      background: var(--line);
+
+      margin: 0 auto 35px;
+    }
+
+    .ending h2 {
+      font-size: clamp(30px, 6vw, 50px);
+      font-weight: normal;
+
+      margin-bottom: 25px;
+    }
+
+    .ending p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #5e5953;
+    }
+
+    /* =========================
+       BOTÃO CONTINUAR
+    ========================= */
+
+    .continue-area {
+      text-align: center;
+      padding: 0 25px 100px;
+    }
+
+    .continue-button {
+      border: 1px solid var(--ink);
+      background: transparent;
+
+      padding: 16px 34px;
+
+      cursor: pointer;
+
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+
+      color: var(--ink);
+
+      transition: .25s ease;
+    }
+
+    .continue-button:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 700px) {
+
+      .header {
+        padding: 55px 20px 40px;
+      }
+
+      .envelopes {
+        width: 88%;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+
+      .envelope {
+        min-height: 135px;
+      }
+
+      .envelope-symbol {
+        font-size: 32px;
+      }
+
+      .letter {
+        padding: 35px 25px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+
+  <!-- =========================
+       CABEÇALHO
+  ========================= -->
+
+  <header class="header">
+
+    <div class="eyebrow">
+      Para você
+    </div>
+
+    <h1>32 dias longe de você...</h1>
+
+    <p class="intro">
+      Recortes dos meus sentimentos distante de ti.
+    </p>
+
+  </header>
+
+
+  <!-- =========================
+       CONTADOR
+  ========================= -->
+
+  <div
+    id="counter"
+    class="counter">
+  </div>
+
+
+  <!-- =========================
+       ENVELOPES
+  ========================= -->
+
+  <main
+    id="envelopes"
+    class="envelopes">
+  </main>
+
+
+  <!-- =========================
+       FINAL
+  ========================= -->
+
+  <section class="ending">
+
+    <div class="ending-line"></div>
+
+    <h2>Um dia de cada vez.</h2>
+
+    <p>
+      Até que a distância deixe de ser distância.
+    </p>
+
+  </section>
+
+
+  <!-- =========================
+       CONTINUAR
+  ========================= -->
+
+  <section class="continue-area">
+
+    <button
+      id="continue-button"
+      class="continue-button"
+      type="button">
+
+      Continuar →
+
+    </button>
+
+  </section>
+
+
+  <!-- =========================
+       CARTINHA
+  ========================= -->
+
+  <div
+    id="letter-overlay"
+    class="letter-overlay">
+
+    <article class="letter">
+
+      <div
+        id="letter-day"
+        class="letter-day">
+      </div>
+
+      <h2
+        id="letter-title">
+      </h2>
+
+      <div
+        id="letter-text"
+        class="letter-text">
+      </div>
+
+      <button
+        id="close-letter"
+        class="close-letter"
+        type="button">
+
+        ← Voltar aos envelopes
+
+      </button>
+
+    </article>
+
+  </div>
+
+
+  <script>
+
+    /* =========================
+       CONFIGURAÇÃO
+    ========================= */
+
+    const startDate = new Date(
+      2026,
+      7,
+      29
+    );
+
+    const totalDays = 32;
+
+
+    /* =========================
+       CARTAS
+       
+       VOCÊ PODE EDITAR AQUI
+    ========================= */
+
+    const letters = [
+
+      {
+        title: "1º dia sem você",
+        text: `Hoje foi o primeiro dia. Claro que senti a sua falta. Acordei e você não estava lá para eu te dar beijinho.
+Na pausa do almoço eu não tinha você para conversar.
+Te liguei. Foi lindo ver você com a sua família, eu sei o quanto eles estão felizes, eu também estaria ao te reencontrar.
+Mas bem, o dia passou, a gente se falou. Mas é diferente. Hoje eu não beijei, hoje eu não te beijei. Meu corpo também sente a sua falta.
+Você está nas pequenas coisas.
+Te amo!`
+      },
+
+      {
+        title: "2º dia sem você",
+        text: `Parece que já é muito tempo. Hoje vi e vivi várias coisas que você também gostaria. Certamente teríamos caminhado por BH conversando. Teríamos tirado boas fotos e você teria gostado da comida do restaurante.
+Sei que só tem dois dias, mas a sensação que eu tenho é que já estou há muito tempo te vendo só pela tela.
+Sinto falta do seu cheiro e do seu toque.
+Sinto falta de você em tudo.
+Te amo!`
+      },
+
+      {
+        title: "3º dia sem você",
+        text: `Hoje eu fui no mercado de BH. Lá é incrível. Tudo era muito a sua cara. Senti saudades de você tão encatando quanto eu. Saudade de você para dividir comigo as comidas. Partilhar opiniões e experiências.
+Hoje a gente se falou mais cedo. Você parecia não querer falar muito, pareceu borocochô, mas acho que era o cansaço pós JJ - oss.
+Falamos no final do dia e foi lindo.
+É estranho, sei que é pouco tempo afinal é o 3° dia, mas parece mesmo muito, parece que nos falamos por telefone há muito.
+Tenho visto passagens para tentar ir mais cedo, mas está tudo caro.
+Saudade de te tocar, as vezes a interação é difícil por telefone.
+Te amo!`
+      },
+
+      {
+        title: "4º dia sem você",
+        text: `A distância é foda. Sinto genuinamente a gente desconectado. Sinto a distância
+        Comi fora e mais uma vez vc fez falta para dividir o prato. A rabada estava salgada, mas talvez fosse o meu paladar. Queria você para discutirmos.
+O cabelereiro treinava JJ - falei de vc - ele vai graduar para faixa preta.
+Sinto a gente meio distante, mas eu entendo que tem a ver com essa fase, isso de vídeo chamada é sempre diferente - mais diferente do que eu imaginava.
+Fiquei feliz com a notícia do Guilherme, acho que vai correr bem.
+Te amo`
+      },
+
+      {
+        title: "5º dia sem você",
+        text: `Hoje tivemos ligações gostosas.
+Você me falou "sinto falta de quem eu sou quando estou com você". Isso me bateu muito forte. Não só por eu achar que isso é lindo, que isso é um dos principais motivos para duas pessoas estarem juntas, mas também porque eu sinto o mesmo. Gosto de como me vulnerabilizo. Gosto da versão que você tira de mim. Isso me faz pensar que estamos no caminho certo - tiramos o melhor um do outro.
+Hoje meu coraçãozinho apertou diferente.
+Depois ao final do dia você ligou com uma novidade. Queria taaanto estar do seu lado para a gente falar sobre. Para a gente falar, depois mudar de assunto, depois voltar a falar e evoluir nesse diálogo.
+Quero deixar claro que vc pode me ligar quando quiser para o que você quiser.
+Sinto a sua falta. Deito com saudade.
+Te amo!`
+      },
+
+      {
+        title: "6º dia sem você",
+        text: `Hoje passei o dia no museu Inhotim. É bem bonito lá, mas eu sigo não compreendendo bem as artes. Você gostaria de uma que era uma sala para deitarmos. Tenho dificuldade de compreender as obras.
+Teríamos passado um bom dia. Quero te levar lá.
+Hoje viajo de ônibus, senti falta de espaço para as pernas. Lembrei de você kkkk
+Sinto saudades de ti, de dividir momentos com você.
+Está sendo mais difícil do que eu imaginava ficar longe de ti.
+Te amo!`
+      },
+
+      {
+        title: "7º dia sem você",
+        text: `Primeira semana longe de você. Talvez seja por isso que eu dormi mal essa noite. Ok eu também estava no ônibus, mas sei lá, as vezes eu encostava em você e tudo se resolvia.
+Hoje cheguei em gyn. Nos reunimos todos, perguntaram por você. Minha mãe fez frango que você gosta, pudim e bolo de chocolate, sua cara. Meu pai disse que entende eu sentir falta, foi fofo - muitos disseram que você faz falta.
+A casa estava um caos, corri com os meninos, ensinei jump jump, gritaria e muita vida na casa - fiquei exausta. Terminei o dia na minha irmã com os meninos.
+Deitei e queria o seu cheiro. Hoje tô usando a sua blusa, é o mais próximo que consigo ter de ti.
+
+Para seu perfeito faltou você.
+
+Te amo do tamanho do mundo`
+      },
+
+      {
+        title: "8º dia sem você",
+        text: `Mais de uma semana sem você.
+Sinto falta desde quando acordo e te dava beijos ou quando no meio da noite eu mexia para encostar em você.
+Sinto falta das minhas pausas do trabalho e ver você ou te dar beijos, ou a gente bater um papo do nada sobre tudo e sobre nada. Sinto falta da nossa intimidade nos detalhes.
+Hoje a gente se falou, a gente se fala todo dia. Mas sinto que foi corrido. Sinto especialmente falta do nosso tempo de qualidade, acho que isso está pegando forte.
+Hoje você falou que está desanimado/deprimido - fiquei preocupada, queria simplesmente pode chegar abrindo a porta do seu quarto e coabitação, coexistirmos e conversarmos.
+É um misto de felicidade e incompletude estar aqui.
+Estou feliz com a minha família, mas sinto o vazio da sua presença.
+Estou procurando passagens para voltar o mais cedo possível.
+Te amo, meu amor!`
+      },
+
+      {
+        title: "9º dia sem você",
+        text: `A gente tem falado pouquinho - minha rotina me consumindo, você com múltiplos projetos. Hoje gostei de te ver: feliz e bem disposto. Falamos hoje sobre o prazo para eu voltar. Sinto que você não quer me dizer na moral o que você sente, sinto que porque você não quer forçar a barra.
+Aqui com a minha mãe e minha vó está pesado. Considero ir para outro lugar, mas vou ter de saber como falar para não pesar para elas.
+Fazem 9 dias, mas as vezes parece que é muito mais... estranho...
+Te amo`
+      },
+
+      {
+        title: "10º dia sem você",
+        text: `Hoje me mudei para a minha irmã. A Lud tem a habilidade de fazer a gente se sentir confortável. 
+        Enquanto a gente conversava percebi mais uma vez o quanto a gente tem ums boa relação. 
+        A gente se apoia, a gente se motiva, a gente se respeita e a gente tira o melhor um do outro. 
+        Nisso eu percebo como eu amo falar da gente. Eu amo acreditar em casamento, eu acredito em felicidade a dois e que é possível ser feliz, porque nós somos o meu exemplo de casal e eu quero ficar bem velhinha com você. 
+        Sou grata por te ter como meu parceiro de vida e estou morrendo de saudades.
+
+Te amo de paixão.`
+      },
+
+      {
+        title: "11º sem você",
+        text: `Me sinto desmotivada com muita coisa. Isso é diferente para mim. Noite passada dormi meio mal. Estou precisando me organizar, acho que ticar coisas vai me ajudar bastante.
+Hoje gravamos o podcast e acho gostoso porque dedicamos um tempo para estar juntos.
+Hoje uma amiga da minha irmã veio para cá e elas estavam tomando vinho e conversando - a cada relato que eu ouço percebo o quanto eu amo a gente.
+Adoro o nosso respeito, parceria, sintonia, apoio.
+Obrigada por ser a gente.
+
+Te amo forte`
+      },
+
+      {
+        title: "12º sem você",
+        text: `Hoje saí com a minha irmã foi muito legal. Foi legal estar com ela. Ver as amigas dela. Ver a importância de ter um núcleo de amigos. Me trouxe de volta a vontade de ter o grupo de amigas.
+Foi muito bonito em várias camadas.
+Como é óbvio eu senti a sua falta - mais uma fslts do que a gente não viveu, na verdade. Eu ainda gostaria de ter a gente dançando juntos. Acho que tenho essa idealização pessoal.
+As vezes eu via fotos nossas durante o rolê.
+Obrigada por me elogiar dançar, você é um fofo. E eu lembrei do que você me diz quando eu danço.
+Tenho mesmo vontade de estar com você.
+Te amo`
+      },
+
+      {
+        title: "13º sem você",
+        text: `Ando tendo dias agitados. Isso me ajuda a lidar com a sua falta.
+Hoje estou exausta - gosto do sentimento. Fui no show com a minha mãe, foi super legal. Nos divertimos. Tocaram musicas nas quais eu me emocionei, muitas que lembrei de vc.  Quem sabe um dia a gente vai nun show e dança algumas coladinhos hihihi
+Tive agora quando voltei um momento sozinha que me soube a vida. Acho que precisava disso.
+Hoje levei almoço para ir almoçar no meu irmão, e ai vejo o quanto é deturpada a minha visão, levei imensa carne kkk e só um pouquinho de feijao e mandioca (muito a gente).
+Falamos ao telefone hoje a tarde, foi super gostoso.
+Sinto sua falta de várias formas, e recentemente tem batido muita a falta sexual também - não querendo te objetificar - mas sei lá sinto falta de te sentir tbm desta forma.
+
+Bem, normalmente sou mais melancólica, não sei bem como acabar esta mensagem.
+
+Te amo`
+      },
+
+      {
+        title: "14º dia sem você",
+        text: `Foi dia dos pais. Fui para o meu pai.
+Foi divertido. Fizemos churrasco e me senti quase completa - senti a sua falta - na verdade nós sentimos.
+Nadamos, brincamos com o Arthur, foi super divertido. Você sabia como brincar com ele, ser físico. Tenho algumas dificuldades. Ele pergunta por você kkk é muito bonitinho.
+Esse dia dos pais foi diferente. Olhei com uma ótica mais profunda sobre o dia, fiquei só observando as pessoas e admirei ainda mais o meu irmão sendo pai. Achei simplesmente sensacional admirar essa faceta dele, ele realmente tem dom. Acho que você seria assim também - não, isso não quer dizer que eu quero ter filhos.
+Voltei, tive um me time que foi bem bom.
+
+Quis o seu carinho.
+Te amo`
+      },
+
+      {
+        title: "15º dia sem você",
+        text: `Minha irmã está sem empregada. Vi a Lud na função dona de casa forte. Me fez admirá-la ainda mais. Ela parece relaxada, mas ela é tão frenética mentalmente quanto eu e a minha mãe. Na verdade acho que minha mãe passou isso para todo mundo - somos todos freneticamente controladores e overthinkers. É legal conversar com os meninos. Você curtiria também. Hoje também visitei um espaço, parece que está se tornando real. As vezes me sinto sozinha no processo (sim, eu sei que a minha mãe pode ajudar e tal, mas as vezes é difícil partilhar com ela), mas admito que as vezes me questiono até que ponto devo partilhar e te envolver e até que ponto não - as vezes a linha é tênue.
+Espero que a sua entrevista tenha corrido bem, a gente não se falou mais sobre isso.
+
+Boa noite
+Te amo`
+      },
+
+      {
+        title: "16º dia sem você",
+        text: `As horas de almoço não são as mesmas sem você. Os fins de tarde.
+Algumas conversas que eu gostaria de ter...
+Hoje a gente se falou você estava deitado. Só queria estar deitadinha com você.
+Estou vibrando pelas suas conquistas e amando saber que você está fazendo tantas entrevistas.
+Ansiosa pela nosso espaço, pela nossa paz, pela nossa família.
+
+Te amo meu nego, mais um dia com saudades`
+      },
+
+      {
+        title: "17º dia sem você",
+        text: `Todo dia na hora de dormir é duro. Gosto de dormir em cama de solteiro porque sinto menos a sua ausência. Tenho saudades de você me colocando para dormir e me dando beijinho. Saudades de poder encostar em você de madrugada, seja por segurança ou só para roubar o teu calorzinho. Gosto de quem eu sou quando estou com você, sinto falta de você me estimulando a ser o meu melhor e assistir você brilhando.
+
+Gosto de quem somos quando estamos juntos.
+
+Te amo`
+      },
+
+      {
+        title: "18º dia sem você",
+        text: `Deitada antes de dormir penso: acho que não falhei nenhum dia. Mas bate a dúvida.
+Já ultrapassamos a marca do maior tempo em que ficamos distantes. Acho que o maior tempo foi quando fui à Alemanha da primeira vez e quando viemos ao BR em 2022... mas acho que foi cerca de 2 semanas, hoje já fazem mais dias.
+Me sinto cansada, não tenho dormido bem.
+Você costuma me trazer calma.
+Hoje falamos ao telefone e foi muito bom, adoro falar com você, mesmo não sendo a mesma coisa de estarmos pessoalmente.
+O Davi está em Paris e foi muito inspirador ver isso - pensei o quanto eu quero uma viagem romântica contigo. Na verdade lembrei de vários planos e ideias que tive e não executei - me questionei a razão de nunca tê-lo feito. Vou ter mais ações.
+Bem se você está lendo isso é porque de fato eu concluí uma ação kkkkk
+Hoje você também falou uma frase que me deixou reflexiva: "Vai ser muito triste se passar a vida e nós não tivermos filhos". Queria entender como você pensa.
+Me sinto ansiosa para viver tudo o que a gente pode viver.
+
+Te amo e tô com muita saudades!`
+      },
+
+      {
+        title: "19º dia sem você",
+        text: `Cresci acreditando que a gente era melhor sozinho. Que a vida com outra pessoa era mais complicada. Que não queria ninguém me controlando. Como se relacionamento fosse dar satisfação.
+E você musou isso tudo.
+Eu amo a nossa relação leve. Eu adoro ter vivido na pele a experiência de mudar de ideia pelo que vivi e conheci.
+Eu amo acreditar no amor. Eu amo me emocionar com casamentos e casais porque acredito que aquilo é real. Eu amo saber que relação é para somar. Que ter alguém do seu lado facilita, não diminui.
+Minha vida não é mais fácil quando você não está. Os meus dias não são mais fáceis. E sinto estranhesa quando alguém que namora ou é casado diz que fica mais fácil sem o outro.
+Obrigada pelo que construímos. Obrigada por eu acreditar. Obrigada por eu sentir saudades. Obrigada pela nossa relação.
+
+Te amo de paixão`
+      },
+
+      {
+        title: "20º dia sem você",
+        text: `Hoje foi um típico dia que você adoraria.
+Para mim foi vazio.
+Gosto de dias mais preenchidos. Você teria gostado do dia chill. Um pouco de piscina. A noite um japa.
+O japa não era woooow, mas era ok, bom custo benefício. Comemos também um ceviche, era gostoso, não tão potente e tinha um tom de brasilidade kkkk foi engraçado.
+Sinto sua falta. As vezes sinto a gente meio desconectado, mas entendo que são dos dias e da falta de convivência. Acho incrível como a gente se fala todos os dias e espero que continuemos sempre neste caminho.
+
+Tenho muitas saudades
+Te amo`
+      },
+
+      {
+        title: "21º dia sem você",
+        text: `Caraca 3 semanas! Recorde! Acho que nunca ficamos tanto tempo distantes.
+Sinto sua falta diariamente, mas tens dias que batem mais forte. Esse fim de semana você fez falta. Amo tanto te ter perto de mim, para a gente sorrir, rir, discutir questões, dividir experiências.
+Almocei em família hoje e você ia amar o restaurante. 1,6kg de carne, acompanhamento para caralho 350 reais. Serviam 8 pessoas e ainda trouxe marmita para a semana hehehehe
+As comidinhas que você gosta.
+Saudades do seu cheirinho e do seu toque.  Saudades de quando a gente deitava junto para dormir.
+Você me acalma.
+Você é a pessoa com quem eu quero dividir tudo, comentários tranquilos e/ou pesados.
+
+Sinto tanto sua falta.
+Te amo forte`
+      },
+
+      {
+        title: "22º dia sem você",
+        text: `Hoje foi meu primeiro dia sozinha na casa da minha irmã. Meu dia foi produtivo.
+Tive aquela reunião do esquema de pirâmide , arrumei casa, vi o Arthur e minha mãe. Falamos ao telefone hoje, foi muito gostoso.
+Sinto sua falta, a gente ia passar um momento bem bom agora
+
+Te amo`
+      },
+
+      {
+        title: "23º dia sem você",
+        text: `Hoje passei o dia muito exausta. Me sinto cansada, nem sei do que.
+Não me sinto eu.
+Tive episódios de compulsão alimentar e não foi legal - isso me gera medo de estar sozinha, não pelo estar sozinha, mas por não confiar em mim sozinha.
+Visitei parentes e percebo bem como adoro a nossa comunicação. Eu me gamo muito de nós dois, tenho genuíno orgulho. Vejo como pessoas terminam em relações merda e desejo do fundo que tenhamos consciência para não ir nesta direção.
+Que continue sendo sempre assim - nós dois e a nossa vontade de fazer dar certo.
+
+Te amo tanto`
+      },
+
+      {
+        title: "24º dia sem você",
+        text: `Parece uma eternidade. Estou arrependida de ter comprado uma passagem para tanto tempo. Sinto muito a sua falta. Realmente pensei que seria mais fácil, mas agora é o que é, tenho que pagar o preço das minhas escolhas.
+Ando desanimada com muita coisa.
+Sinto que preciso de um momento para restart na minha vida, não sei o porquê.
+Bem, fico feliz em te ver centrado e realizado, mas queria que estivéssemos juntos. Talvez no futuro pareça pouco tempo, mas agora parece uma eternidade. É uma loucura pensar que não passou nem metade do tempo ainda...
+
+Acho que ando bem triste com isso.
+
+Desculpa, eu não pensei bem.
+Sinto meu coração acelerado e muita ansiedade.
+
+Te amo
+Sinto a sua falta todo dia`
+      },
+
+      {
+        title: "25º dia sem você",
+        text: `Te falei hoje que já parece muito tempo. E ainda não passou nem metade.
+Conversar pelo telefone é diferente.
+Sinto que estou vivendo muita coisa e que ao mesmo tempoe stou inercial. O tempo passa de forma diferente.
+Queria que você estivesse aqui para ser mais leve. Os dois meses no final do ano não pareceram tanto, mas é engraçado como a sua ausência já dá outra percepção.
+Na próxima semana quero avançar de verdade com as coisas do casamento.
+Você é a minha pessoa favorita.
+
+Te amo`
+      },
+
+      {
+        title: "26º dia sem você",
+        text: `Acho que conheci um casal que admiro e que possa ser meu exemplo.
+Meus tios são muito fodas. Me contaram um pouco da história deles hoje e caraca eles já passaram por altos e baixos juntos.
+Já tiveram muito boa condição, perderam tudo, mudaram de cidades inúmeras vezes. E é lindo como eles falam da relação deles.
+Eles riem juntos, eles contam histórias juntos, eles conversam com interesse no que o outro tem a dizer, eles trabalham juntos, eles se admiram e hoje eles têm um foodtruck.
+Foram poucas horas aqui, porém intensas.
+Me fez perceber também ainda mais a importância de juntar dinheiro, de ter uma reserva de emergência. Me supreende muito uma pessoa que já foi referência nacional perder tudo...
+Enquanto a gente conversava falamos muito de carreiras da história do meu tio que é engenheiro. Nunca vi um engenheiro falar com tanta paixão da profissão. Ele ama o que ele faz/fez e ele trabalhou por paixão e não pelo dinheiro, nunca tinha conhecido alguém assim.
+Well, com certeza é uma viagem que eu gostaria de ter aqui. São duas pessoas muito especiais que você um dia vai conhecer, provar a comida e trocar ideias.
+
+Tô indo dormir tarde...
+
+Te amo`
+      },
+
+      {
+        title: "27º dia sem você",
+        text: `Acordei tarde. Passei o dia comendo. Estou feliz em passar só o fim de semana, porque é absurdo o volume de comida.
+Você ia gostar do deitarzinho depois do almoço.
+Hoje conheci a cidade, vi várias coisas interessantes e acho que vc gostaria da vibe da cidade tem uma beira rio, o clima é quente, tem como andar de caiaque, várias quadras e tal.
+Falo muito de você. Acho que estou insuportável de chata kkkk monotemática.
+Hoje falamos no telefone de morar juntos, procurei alguns quartos. Anseio por esse momento.
+
+Tô com muita saudade!
+
+Te amo demais`
+      },
+
+      {
+        title: "28º dia sem você",
+        text: `Hoje foi um dia de muitas novidades e celebrações. Você teve o convite para o doutorado. Eu recebi a confirmação da cidadania.
+Queria tanto estar com você para a gente celebrar. A cada dia que passa sinto mais a sua falta. Nossa parceria, nossa sintonia, seu carinho.
+Adoro ver você alcançando seus sucessos, traçando oportunidades e conquistando tudo o que você sonhou.
+
+Te amo loucamente`
+      },
+
+      {
+        title: "29º dia sem você",
+        text: `Hoje fui tia dos meninos da Lud.
+Muito caos. Só é fácil a curta duração. Mas por fim correu bem.
+Hoje a gente ficou um tempão em chamada, foi muito gostoso para mim. Sinto que a gente se reconectou. Sinto que a gente fez planos juntos de novo. Isso deixou meu coração tão quentinho e leve.
+Adoro conseguir imaginar o resto da minha vida com você. Amo a gente e o que a gente tem. Amo a profundidade do seu olhar e a leveza do seu toque.
+Só queria te abraçar e te beijar. Sinto que vou ficar grudada em você por dias.
+
+Ansiosa para te ver e por tudo o que vamos viver.
+
+Te amo demais`
+      },
+
+      {
+        title: "30º dia sem você",
+        text: `C-A-R-A-C-A 1 MÊS
+Mais um grande marco. Hoje fazem exatamente 30 dias que a gente está distante. Custa-me pensar que ainda faltam mais 33 dias para eu te ver. Não passou nem a metade. Me sinto triste. Hoje também não colaborei muito contigo sobre o podcast, desculpe por isso. Prometo que irei melhorar.
+Hoje o Rafael me perguntou "Tia, se você um dia se separar do tio Igor você volta para Goiânia?" Eu disse que não e disse que a decisão que nos une hoje é ficarmos juntos para sempre. Ele me questionou sobre morar longe e se eu ia ficar "sozinha como a vovó". Eu disse que não e que vir para Goiânia era bastsnte mais complexo. Depois eu disse que a gente era para sempre. Ele me questionou tipo "como você sabe" e eu disse "eu sei. A gente está disposto a ser".
+
+Te amo sem medida`
+      },
+
+      {
+        title: "31º dia sem você",
+        text: `Meu pé ta inchado e eu queria fazer drama para você. Hoje a gente se falou deitadinha do chão do banheiro, que vontade de estar deitada contigo, sentir seu cheiro, seu toque e te beijar.
+Aii que saudades do seu cheirinho.
+Espero que o próximo mês passe rápido.
+Acho que você tinha melhor noção de tempo do que eu quando decidimos isso.
+
+Te amo demais`
+      },
+
+      {
+        title: "32º dia sem você",
+        text: `Eu tô chorando. Aqui ainda é dia 28. Mas eu queria muito ter te ligado a 00h dai para te dar parabéns.
+Queria te dizer que eu estou muito feliz pelo seu sucesso, pela conquista do projeto (eu sei eu sei, você ainda não está com o projeto, mas você já foi pessoalmente convidado).
+Eu me orgulho de você de uma forma ímpar, te admiro absurdo e estou ansiosa pela vida que ainda vamos viver - todos os caminhos dão em sucesso.
+Tudo o que eu queria era o seu abraço.
+
+Te amo absurdo.`
+      }
+
+    ];
+
+
+    /* =========================
+       ELEMENTOS
+    ========================= */
+
+    const envelopesContainer =
+      document.getElementById("envelopes");
+
+    const counter =
+      document.getElementById("counter");
+
+    const overlay =
+      document.getElementById("letter-overlay");
+
+    const letterDay =
+      document.getElementById("letter-day");
+
+    const letterTitle =
+      document.getElementById("letter-title");
+
+    const letterText =
+      document.getElementById("letter-text");
+
+    const closeLetter =
+      document.getElementById("close-letter");
+
+    const continueButton =
+      document.getElementById("continue-button");
+
+
+    /* =========================
+       DATA DE HOJE
+    ========================= */
+
+    function getToday() {
+
+      const now = new Date();
+
+      return new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate()
+      );
+
+    }
+
+
+    /* =========================
+       DIAS LIBERADOS
+    ========================= */
+
+    function getUnlockedDays() {
+
+      const today = getToday();
+
+      const difference =
+        today.getTime() -
+        startDate.getTime();
+
+      const daysPassed =
+        Math.floor(
+          difference /
+          (1000 * 60 * 60 * 24)
+        );
+
+      return Math.min(
+        Math.max(daysPassed + 1, 0),
+        totalDays
+      );
+
+    }
+
+
+    /* =========================
+       FORMATAR DATA
+    ========================= */
+
+    function formatDate(date) {
+
+      return date.toLocaleDateString(
+        "pt-BR",
+        {
+          day: "2-digit",
+          month: "2-digit"
+        }
+      );
+
+    }
+
+
+    /* =========================
+       CRIAR ENVELOPES
+    ========================= */
+
+    function renderEnvelopes() {
+
+      envelopesContainer.innerHTML = "";
+
+      const unlockedDays =
+        getUnlockedDays();
+
+
+      /* CONTADOR */
+
+      if (unlockedDays === 0) {
+
+        counter.textContent =
+          "Os envelopes começam a ser liberados em 29/08/2026.";
+
+      } else {
+
+        counter.textContent =
+          unlockedDays +
+          " de " +
+          totalDays +
+          " cartas liberadas";
+
+      }
+
+
+      /* ENVELOPES */
+
+      for (
+        let i = 0;
+        i < totalDays;
+        i++
+      ) {
+
+        const dayNumber = i + 1;
+
+        const unlocked =
+          dayNumber <= unlockedDays;
+
+
+        const envelope =
+          document.createElement("button");
+
+        envelope.type = "button";
+
+        envelope.className =
+          "envelope" +
+          (unlocked ? "" : " locked");
+
+
+        const inner =
+          document.createElement("div");
+
+        inner.className =
+          "envelope-inner";
+
+
+        const number =
+          document.createElement("div");
+
+        number.className =
+          "envelope-number";
+
+        number.textContent =
+          "Dia " +
+          String(dayNumber).padStart(2, "0");
+
+
+        const symbol =
+          document.createElement("div");
+
+        symbol.className =
+          "envelope-symbol";
+
+        symbol.textContent =
+          unlocked ? "✉" : "🔒";
+
+
+        const label =
+          document.createElement("div");
+
+        label.className =
+          "envelope-label";
+
+        label.textContent =
+          unlocked
+            ? "Abrir carta"
+            : "Ainda não";
+
+
+        inner.appendChild(number);
+        inner.appendChild(symbol);
+        inner.appendChild(label);
+
+
+        /* DATA DE LIBERAÇÃO */
+
+        if (!unlocked) {
+
+          const releaseDate =
+            new Date(startDate);
+
+          releaseDate.setDate(
+            startDate.getDate() + i
+          );
+
+
+          const date =
+            document.createElement("div");
+
+          date.className =
+            "locked-date";
+
+          date.textContent =
+            "abre em " +
+            formatDate(releaseDate);
+
+          inner.appendChild(date);
+
+        }
+
+
+        envelope.appendChild(inner);
+
+        envelopesContainer.appendChild(
+          envelope
+        );
+
+
+        /* CLIQUE */
+
+        if (unlocked) {
+
+          envelope.addEventListener(
+            "click",
+            () => openLetter(i)
+          );
+
+        }
+
+      }
+
+    }
+
+
+    /* =========================
+       ABRIR CARTA
+    ========================= */
+
+    function openLetter(index) {
+
+      const letter =
+        letters[index];
+
+
+      if (!letter) {
+        return;
+      }
+
+
+      letterDay.textContent =
+        "32 DIAS LONGE DE VOCÊ • " +
+        String(index + 1).padStart(2, "0");
+
+
+      letterTitle.textContent =
+        letter.title;
+
+
+      letterText.textContent =
+        letter.text;
+
+
+      overlay.classList.add("active");
+
+
+      document.body.style.overflow =
+        "hidden";
+
+    }
+
+
+    /* =========================
+       FECHAR CARTA
+    ========================= */
+
+    function closeLetterWindow() {
+
+      overlay.classList.remove(
+        "active"
+      );
+
+      document.body.style.overflow =
+        "";
+
+    }
+
+
+    closeLetter.addEventListener(
+      "click",
+      closeLetterWindow
+    );
+
+
+    overlay.addEventListener(
+      "click",
+      event => {
+
+        if (
+          event.target === overlay
+        ) {
+
+          closeLetterWindow();
+
+        }
+
+      }
+    );
+
+
+    /* =========================
+       CONTINUAR
+    ========================= */
+
+    continueButton.addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "parte6.html";
+
+      }
+    );
+
+
+    /* =========================
+       INICIAR
+    ========================= */
+
+    renderEnvelopes();
+
+
+    /* =========================
+       ATUALIZA À MEIA-NOITE
+    ========================= */
+
+    setInterval(
+      renderEnvelopes,
+      60000
+    );
+
+  </script>
+
+</body>
+
+</html>
+```
