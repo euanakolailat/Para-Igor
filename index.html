@@ -1,5 +1,5 @@
+```html
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -150,7 +150,9 @@
       border: 1px solid var(--line);
     }
 
-    /* Rio */
+    /* =========================
+       RIO
+    ========================= */
 
     .river {
       position: absolute;
@@ -164,7 +166,9 @@
       z-index: 1;
     }
 
-    /* Estradas */
+    /* =========================
+       ESTRADAS
+    ========================= */
 
     .road {
       position: absolute;
@@ -201,7 +205,7 @@
 
     .map-photo {
       position: absolute;
-      width: 145px;
+      width: 135px;
       padding: 8px 8px 28px;
       background: #faf7f0;
       border: 1px solid #d4cec4;
@@ -215,7 +219,7 @@
 
     .map-photo img {
       width: 100%;
-      height: 115px;
+      height: 105px;
       object-fit: cover;
       display: block;
     }
@@ -239,75 +243,81 @@
       color: var(--muted);
     }
 
-    /* FEUP */
+    /* =========================
+       FEUP — fotos no canto
+    ========================= */
 
     .photo-feup-01 {
-      left: 7%;
-      top: 8%;
-      transform: rotate(-4deg);
+      left: 4%;
+      top: 5%;
+      transform: rotate(-5deg);
     }
 
     .photo-feup-02 {
-      left: 25%;
-      top: 13%;
-      transform: rotate(3deg);
+      left: 22%;
+      top: 7%;
+      transform: rotate(4deg);
     }
 
     .photo-feup-03 {
-      left: 14%;
-      top: 31%;
-      transform: rotate(-2deg);
+      left: 5%;
+      top: 24%;
+      transform: rotate(-3deg);
     }
 
-    /* RIBEIRA */
+    /* =========================
+       RIBEIRA — fotos no lado direito
+    ========================= */
 
     .photo-ribeira-01 {
-      right: 8%;
-      top: 15%;
+      right: 4%;
+      top: 6%;
       transform: rotate(4deg);
     }
 
     .photo-ribeira-02 {
-      right: 25%;
-      top: 27%;
-      transform: rotate(-3deg);
+      right: 22%;
+      top: 25%;
+      transform: rotate(-4deg);
     }
 
     .photo-ribeira-03 {
-      right: 5%;
-      top: 42%;
-      transform: rotate(2deg);
-    }
-
-    /* AGUDA */
-
-    .photo-aguda-01 {
-      left: 5%;
-      bottom: 10%;
+      right: 3%;
+      top: 37%;
       transform: rotate(3deg);
     }
 
+    /* =========================
+       AGUDA — fotos embaixo
+    ========================= */
+
+    .photo-aguda-01 {
+      left: 4%;
+      bottom: 7%;
+      transform: rotate(4deg);
+    }
+
     .photo-aguda-02 {
-      left: 22%;
-      bottom: 5%;
+      left: 21%;
+      bottom: 3%;
       transform: rotate(-4deg);
     }
 
     .photo-aguda-03 {
-      left: 40%;
-      bottom: 12%;
-      transform: rotate(2deg);
+      left: 39%;
+      bottom: 8%;
+      transform: rotate(3deg);
     }
 
     .photo-aguda-04 {
-      right: 27%;
-      bottom: 5%;
+      right: 22%;
+      bottom: 3%;
       transform: rotate(-3deg);
     }
 
     .photo-aguda-05 {
-      right: 7%;
-      bottom: 12%;
+      right: 4%;
+      bottom: 8%;
       transform: rotate(4deg);
     }
 
@@ -345,8 +355,10 @@
       display: block;
       white-space: nowrap;
       font-size: 14px;
-      background: rgba(245,241,233,.95);
-      padding: 5px 9px;
+      background: rgba(245,241,233,.97);
+      padding: 6px 10px;
+      position: relative;
+      z-index: 15;
     }
 
     .location-subtitle {
@@ -357,21 +369,29 @@
       text-transform: uppercase;
       color: var(--muted);
       margin-top: 3px;
+      background: rgba(245,241,233,.97);
+      padding: 2px 5px;
+      position: relative;
+      z-index: 15;
     }
 
+    /* =========================
+       POSIÇÕES DOS PONTOS
+    ========================= */
+
     .feup {
-      left: 29%;
-      top: 31%;
+      left: 48%;
+      top: 27%;
     }
 
     .ribeira {
-      left: 66%;
-      top: 67%;
+      left: 57%;
+      top: 56%;
     }
 
     .aguda {
-      left: 17%;
-      top: 82%;
+      left: 30%;
+      top: 70%;
     }
 
     /* =========================
@@ -416,6 +436,7 @@
 
     .back-button {
       margin-top: 40px;
+      margin-right: 25px;
       border: none;
       border-bottom: 1px solid var(--ink);
       background: transparent;
@@ -425,6 +446,25 @@
       font-size: 10px;
       letter-spacing: 2px;
       text-transform: uppercase;
+    }
+
+    .continue-button {
+      margin-top: 40px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+      padding: 12px 22px;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: .25s;
+    }
+
+    .continue-button:hover {
+      background: transparent;
+      color: var(--ink);
     }
 
     /* =========================
@@ -455,38 +495,44 @@
         bottom: 6px;
       }
 
+      /* FEUP */
+
       .photo-feup-01 {
-        left: 3%;
-        top: 7%;
+        left: 2%;
+        top: 5%;
       }
 
       .photo-feup-02 {
         left: 29%;
-        top: 9%;
+        top: 6%;
       }
 
       .photo-feup-03 {
-        left: 12%;
-        top: 24%;
+        left: 3%;
+        top: 22%;
       }
 
+      /* RIBEIRA */
+
       .photo-ribeira-01 {
-        right: 3%;
-        top: 28%;
+        right: 2%;
+        top: 27%;
       }
 
       .photo-ribeira-02 {
-        right: 28%;
-        top: 34%;
+        right: 29%;
+        top: 32%;
       }
 
       .photo-ribeira-03 {
-        right: 3%;
-        top: 48%;
+        right: 2%;
+        top: 45%;
       }
 
+      /* AGUDA */
+
       .photo-aguda-01 {
-        left: 3%;
+        left: 2%;
         bottom: 17%;
       }
 
@@ -496,7 +542,7 @@
       }
 
       .photo-aguda-03 {
-        left: 3%;
+        left: 2%;
         bottom: 2%;
       }
 
@@ -506,22 +552,24 @@
       }
 
       .photo-aguda-05 {
-        right: 3%;
+        right: 2%;
         bottom: 15%;
       }
 
+      /* PONTOS */
+
       .feup {
-        left: 50%;
-        top: 20%;
+        left: 57%;
+        top: 18%;
       }
 
       .ribeira {
-        left: 67%;
+        left: 57%;
         top: 57%;
       }
 
       .aguda {
-        left: 17%;
+        left: 50%;
         top: 73%;
       }
 
@@ -536,6 +584,17 @@
       .letter {
         padding: 30px 24px;
       }
+
+      .back-button,
+      .continue-button {
+        display: block;
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .continue-button {
+        margin-top: 20px;
+      }
     }
   </style>
 
@@ -549,28 +608,27 @@
 
   <section id="opening" class="screen active">
 
-```
-<div class="opening-inner">
+    <div class="opening-inner">
 
-  <div class="eyebrow">
-    um presente com amor e saudade
-  </div>
+      <div class="eyebrow">
+        um presente com amor e saudade
+      </div>
 
-  <h1>Para Igor</h1>
+      <h1>Para Igor</h1>
 
-  <p class="opening-description">
-    Eu queria conseguir te entregar isso pessoalmente.
-    Como ainda não posso, encontrei outra maneira de chegar até você.
-  </p>
+      <p class="opening-description">
+        Eu queria conseguir te entregar isso pessoalmente.
+        Como ainda não posso, encontrei outra maneira de chegar até você.
+      </p>
 
-  <button id="start-button" class="main-button" type="button">
-    Começar
-  </button>
+      <button id="start-button" class="main-button" type="button">
+        Começar
+      </button>
 
-</div>
-```
+    </div>
 
   </section>
+
 
   <!-- =========================
        MAPA
@@ -578,152 +636,151 @@
 
   <section id="map-screen" class="screen">
 
-```
-<div class="map-header">
+    <div class="map-header">
 
-  <div class="eyebrow">
-    primeira parada
-  </div>
+      <div class="eyebrow">
+        primeira parada
+      </div>
 
-  <h2>Porto</h2>
+      <h2>Porto</h2>
 
-  <p>
-    Escolha um ponto para continuar.
-  </p>
+      <p>
+        Escolha um ponto para continuar.
+      </p>
 
-</div>
+    </div>
 
-<div class="map">
+    <div class="map">
 
-  <div class="river"></div>
+      <div class="river"></div>
 
-  <div class="road one"></div>
-  <div class="road two"></div>
-  <div class="road three"></div>
-
-
-  <!-- =========================
-       FOTOGRAFIAS FEUP
-  ========================= -->
-
-  <button class="map-photo photo-feup-01" type="button" data-location="feup">
-    <img src="imagens/feup-01.jpg" alt="Memória da FEUP">
-    <span>FEUP</span>
-  </button>
-
-  <button class="map-photo photo-feup-02" type="button" data-location="feup">
-    <img src="imagens/feup-02.jpg" alt="Memória da FEUP">
-    <span>FEUP</span>
-  </button>
-
-  <button class="map-photo photo-feup-03" type="button" data-location="feup">
-    <img src="imagens/feup-03.jpg" alt="Memória da FEUP">
-    <span>FEUP</span>
-  </button>
+      <div class="road one"></div>
+      <div class="road two"></div>
+      <div class="road three"></div>
 
 
-  <!-- =========================
-       FOTOGRAFIAS RIBEIRA
-  ========================= -->
+      <!-- =========================
+           FOTOGRAFIAS FEUP
+      ========================= -->
 
-  <button class="map-photo photo-ribeira-01" type="button" data-location="ribeira">
-    <img src="imagens/ribeira-01.jpg" alt="Memória da Ribeira">
-    <span>Ribeira</span>
-  </button>
+      <button class="map-photo photo-feup-01" type="button" data-location="feup">
+        <img src="imagens/feup-01.jpg" alt="Memória da FEUP">
+        <span>FEUP</span>
+      </button>
 
-  <button class="map-photo photo-ribeira-02" type="button" data-location="ribeira">
-    <img src="imagens/ribeira-02.jpg" alt="Memória da Ribeira">
-    <span>Ribeira</span>
-  </button>
+      <button class="map-photo photo-feup-02" type="button" data-location="feup">
+        <img src="imagens/feup-02.jpg" alt="Memória da FEUP">
+        <span>FEUP</span>
+      </button>
 
-  <button class="map-photo photo-ribeira-03" type="button" data-location="ribeira">
-    <img src="imagens/ribeira-03.jpg" alt="Memória da Ribeira">
-    <span>Ribeira</span>
-  </button>
-
-
-  <!-- =========================
-       FOTOGRAFIAS AGUDA
-  ========================= -->
-
-  <button class="map-photo photo-aguda-01" type="button" data-location="aguda">
-    <img src="imagens/aguda-01.jpg" alt="Memória da Praia da Aguda">
-    <span>Aguda</span>
-  </button>
-
-  <button class="map-photo photo-aguda-02" type="button" data-location="aguda">
-    <img src="imagens/aguda-02.jpg" alt="Memória da Praia da Aguda">
-    <span>Aguda</span>
-  </button>
-
-  <button class="map-photo photo-aguda-03" type="button" data-location="aguda">
-    <img src="imagens/aguda-03.jpg" alt="Memória da Praia da Aguda">
-    <span>Aguda</span>
-  </button>
-
-  <button class="map-photo photo-aguda-04" type="button" data-location="aguda">
-    <img src="imagens/aguda-04.jpg" alt="Memória da Praia da Aguda">
-    <span>Aguda</span>
-  </button>
-
-  <button class="map-photo photo-aguda-05" type="button" data-location="aguda">
-    <img src="imagens/aguda-05.jpg" alt="Memória da Praia da Aguda">
-    <span>Aguda</span>
-  </button>
+      <button class="map-photo photo-feup-03" type="button" data-location="feup">
+        <img src="imagens/feup-03.jpg" alt="Memória da FEUP">
+        <span>FEUP</span>
+      </button>
 
 
-  <!-- =========================
-       PONTOS
-  ========================= -->
+      <!-- =========================
+           FOTOGRAFIAS RIBEIRA
+      ========================= -->
 
-  <button class="location feup" type="button" data-location="feup">
+      <button class="map-photo photo-ribeira-01" type="button" data-location="ribeira">
+        <img src="imagens/ribeira-01.jpg" alt="Memória da Ribeira">
+        <span>Ribeira</span>
+      </button>
 
-    <div class="location-dot"></div>
+      <button class="map-photo photo-ribeira-02" type="button" data-location="ribeira">
+        <img src="imagens/ribeira-02.jpg" alt="Memória da Ribeira">
+        <span>Ribeira</span>
+      </button>
 
-    <span class="location-name">
-      Faculdade de Engenharia
-    </span>
-
-    <span class="location-subtitle">
-      onde tudo começou
-    </span>
-
-  </button>
-
-
-  <button class="location ribeira" type="button" data-location="ribeira">
-
-    <div class="location-dot"></div>
-
-    <span class="location-name">
-      Ribeira
-    </span>
-
-    <span class="location-subtitle">
-      uma memória
-    </span>
-
-  </button>
+      <button class="map-photo photo-ribeira-03" type="button" data-location="ribeira">
+        <img src="imagens/ribeira-03.jpg" alt="Memória da Ribeira">
+        <span>Ribeira</span>
+      </button>
 
 
-  <button class="location aguda" type="button" data-location="aguda">
+      <!-- =========================
+           FOTOGRAFIAS AGUDA
+      ========================= -->
 
-    <div class="location-dot"></div>
+      <button class="map-photo photo-aguda-01" type="button" data-location="aguda">
+        <img src="imagens/aguda-01.jpg" alt="Memória da Praia da Aguda">
+        <span>Aguda</span>
+      </button>
 
-    <span class="location-name">
-      Praia da Aguda
-    </span>
+      <button class="map-photo photo-aguda-02" type="button" data-location="aguda">
+        <img src="imagens/aguda-02.jpg" alt="Memória da Praia da Aguda">
+        <span>Aguda</span>
+      </button>
 
-    <span class="location-subtitle">
-      casa
-    </span>
+      <button class="map-photo photo-aguda-03" type="button" data-location="aguda">
+        <img src="imagens/aguda-03.jpg" alt="Memória da Praia da Aguda">
+        <span>Aguda</span>
+      </button>
 
-  </button>
+      <button class="map-photo photo-aguda-04" type="button" data-location="aguda">
+        <img src="imagens/aguda-04.jpg" alt="Memória da Praia da Aguda">
+        <span>Aguda</span>
+      </button>
 
-</div>
-```
+      <button class="map-photo photo-aguda-05" type="button" data-location="aguda">
+        <img src="imagens/aguda-05.jpg" alt="Memória da Praia da Aguda">
+        <span>Aguda</span>
+      </button>
+
+
+      <!-- =========================
+           PONTOS
+      ========================= -->
+
+      <button class="location feup" type="button" data-location="feup">
+
+        <div class="location-dot"></div>
+
+        <span class="location-name">
+          Faculdade de Engenharia
+        </span>
+
+        <span class="location-subtitle">
+          onde tudo começou
+        </span>
+
+      </button>
+
+
+      <button class="location ribeira" type="button" data-location="ribeira">
+
+        <div class="location-dot"></div>
+
+        <span class="location-name">
+          Ribeira - Cais de Gaia
+        </span>
+
+        <span class="location-subtitle">
+          nosso spot
+        </span>
+
+      </button>
+
+
+      <button class="location aguda" type="button" data-location="aguda">
+
+        <div class="location-dot"></div>
+
+        <span class="location-name">
+          Praia da Aguda
+        </span>
+
+        <span class="location-subtitle">
+          leve como a brisa do mar
+        </span>
+
+      </button>
+
+    </div>
 
   </section>
+
 
   <!-- =========================
        CARTA
@@ -731,23 +788,26 @@
 
   <section id="letter-screen" class="screen">
 
-```
-<article class="letter">
+    <article class="letter">
 
-  <div id="letter-number" class="letter-number"></div>
+      <div id="letter-number" class="letter-number"></div>
 
-  <h2 id="letter-title"></h2>
+      <h2 id="letter-title"></h2>
 
-  <div id="letter-content" class="letter-content"></div>
+      <div id="letter-content" class="letter-content"></div>
 
-  <button id="back-button" class="back-button" type="button">
-    ← Voltar ao mapa
-  </button>
+      <button id="back-button" class="back-button" type="button">
+        ← Voltar ao mapa
+      </button>
 
-</article>
-```
+      <button id="continue-button" class="continue-button" type="button">
+        Continuar →
+      </button>
+
+    </article>
 
   </section>
+
 
   <script>
 
@@ -798,9 +858,7 @@ Mas ali me lembro da época em que fomos nos conhecendo.
 Jovens, despretensiosos.
 
 Ali foi quando confessamos nossos primeiros problemas de relação dentro de casa — nos aproximamos.
-
 Ali acho que foi um dos primeiros lugares em que nos desconectamos do mundo e começamos a nos conectar.
-
 Ali te vi vulnerável.
 
 Obrigada por ter pegado todos aqueles comboios tarde da noite.
@@ -849,6 +907,7 @@ Eternamente garoto de Aguda.`
 
     const startButton = document.getElementById("start-button");
     const backButton = document.getElementById("back-button");
+    const continueButton = document.getElementById("continue-button");
 
     const letterNumber = document.getElementById("letter-number");
     const letterTitle = document.getElementById("letter-title");
@@ -911,6 +970,13 @@ Eternamente garoto de Aguda.`
     }
 
 
+    function continueToPartTwo() {
+
+      window.location.href = "parte2.html";
+
+    }
+
+
     /* =========================
        EVENTOS
     ========================= */
@@ -918,6 +984,8 @@ Eternamente garoto de Aguda.`
     startButton.addEventListener("click", showMap);
 
     backButton.addEventListener("click", showMap);
+
+    continueButton.addEventListener("click", continueToPartTwo);
 
 
     document
@@ -936,3 +1004,4 @@ Eternamente garoto de Aguda.`
 
 </body>
 </html>
+```
