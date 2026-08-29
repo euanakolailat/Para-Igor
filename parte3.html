@@ -1,13 +1,13 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Pelo mundo — Para Igor</title>
+  <title>Home — Para Igor</title>
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -29,19 +29,12 @@
     }
 
     /* =========================
-       PÁGINA
+       CABEÇALHO
     ========================= */
-
-    .page {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 60px 28px 80px;
-    }
 
     .header {
       text-align: center;
-      margin-bottom: 55px;
+      padding: 70px 25px 45px;
     }
 
     .eyebrow {
@@ -54,18 +47,18 @@
     }
 
     h1 {
-      font-size: clamp(48px, 9vw, 82px);
+      font-size: clamp(52px, 10vw, 90px);
       font-weight: normal;
       line-height: .95;
-      margin-bottom: 22px;
+      margin-bottom: 25px;
     }
 
     .intro {
-      max-width: 560px;
+      max-width: 620px;
       margin: 0 auto;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.7;
+      font-size: 18px;
+      line-height: 1.8;
+      color: #5e5953;
     }
 
     /* =========================
@@ -73,610 +66,464 @@
     ========================= */
 
     .gallery {
+      width: min(1100px, 92%);
+      margin: 20px auto 80px;
+
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(12, 1fr);
       gap: 22px;
+      align-items: start;
     }
 
-    .place {
+    .photo-card {
       position: relative;
-      border: none;
-      padding: 0;
-      background: none;
+      background: #faf7f0;
+      padding: 9px 9px 38px;
+      border: 1px solid #d4cec4;
+      box-shadow: 0 12px 30px rgba(40,35,30,.12);
+
       cursor: pointer;
-      overflow: hidden;
-      text-align: left;
+
+      transition:
+        transform .35s ease,
+        box-shadow .35s ease;
     }
 
-    .place-image {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      background: #ded9d0;
+    .photo-card:hover {
+      transform: translateY(-7px) scale(1.015);
+      box-shadow: 0 20px 40px rgba(40,35,30,.20);
     }
 
-    .place-image img {
+    .photo-card img {
       width: 100%;
-      height: 100%;
+      height: 230px;
       object-fit: cover;
       display: block;
-      transition: transform .6s ease;
     }
 
-    .place:hover img {
-      transform: scale(1.04);
-    }
-
-    .place-info {
-      padding: 15px 4px 5px;
-    }
-
-    .place-number {
-      font-family: Arial, sans-serif;
-      font-size: 9px;
-      letter-spacing: 2px;
-      color: var(--muted);
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .place-name {
-      font-size: 24px;
-      font-weight: normal;
-    }
-
-    .place-hint {
-      font-family: Arial, sans-serif;
-      font-size: 9px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 6px;
-      display: block;
-    }
-
-    /* =========================
-       CARTA / MODAL
-    ========================= */
-
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(41,39,36,.55);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 25px;
-      z-index: 20;
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
-    .letter {
-      width: 100%;
-      max-width: 680px;
-      max-height: 90vh;
-      overflow-y: auto;
-      background: #faf7f0;
-      border: 1px solid var(--line);
-      padding: clamp(30px, 7vw, 65px);
-      box-shadow: 0 25px 80px rgba(0,0,0,.18);
-      position: relative;
-    }
-
-    .close {
+    .photo-card span {
       position: absolute;
-      top: 20px;
-      right: 22px;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      font-family: Arial, sans-serif;
-      font-size: 20px;
-      color: var(--muted);
-    }
+      bottom: 12px;
+      left: 0;
+      right: 0;
 
-    .letter-number {
+      text-align: center;
+
       font-family: Arial, sans-serif;
-      font-size: 10px;
+      font-size: 9px;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 22px;
     }
 
-    .letter h2 {
-      font-size: clamp(38px, 7vw, 58px);
+    /* posições */
+
+    .card-parana {
+      grid-column: 1 / 5;
+      transform: rotate(-2deg);
+    }
+
+    .card-rio {
+      grid-column: 5 / 9;
+      margin-top: 35px;
+      transform: rotate(2deg);
+    }
+
+    .card-patagonia {
+      grid-column: 9 / 13;
+      transform: rotate(-1deg);
+    }
+
+    .card-colombia {
+      grid-column: 2 / 6;
+      margin-top: 20px;
+      transform: rotate(2deg);
+    }
+
+    .card-praga {
+      grid-column: 6 / 10;
+      margin-top: 55px;
+      transform: rotate(-2deg);
+    }
+
+    .card-napoli {
+      grid-column: 10 / 13;
+      margin-top: 10px;
+      transform: rotate(3deg);
+    }
+
+    .card-cusco {
+      grid-column: 3 / 7;
+      margin-top: 35px;
+      transform: rotate(-2deg);
+    }
+
+    .card-nazare {
+      grid-column: 7 / 11;
+      margin-top: 5px;
+      transform: rotate(2deg);
+    }
+
+    /* =========================
+       TEXTO FINAL
+    ========================= */
+
+    .ending {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 20px 25px 100px;
+    }
+
+    .ending-line {
+      width: 50px;
+      height: 1px;
+      background: var(--line);
+      margin: 0 auto 35px;
+    }
+
+    .ending h2 {
+      font-size: clamp(32px, 6vw, 52px);
       font-weight: normal;
-      margin-bottom: 28px;
+      margin-bottom: 25px;
     }
 
-    .letter-content {
+    .ending p {
       font-size: 18px;
-      line-height: 1.85;
-      color: #4d4842;
-      white-space: pre-line;
+      line-height: 1.8;
+      color: #5e5953;
+    }
+
+    /* =========================
+       BOTÃO MÚSICA
+    ========================= */
+
+    .music-button {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+
+      width: 48px;
+      height: 48px;
+
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+
+      background: rgba(245,241,233,.95);
+      color: var(--ink);
+
+      cursor: pointer;
+
+      font-family: Arial, sans-serif;
+      font-size: 17px;
+
+      box-shadow: 0 5px 20px rgba(40,35,30,.12);
+
+      z-index: 50;
+    }
+
+    .music-button:hover {
+      background: var(--ink);
+      color: var(--paper);
     }
 
     /* =========================
        MOBILE
     ========================= */
 
-    @media (max-width: 650px) {
-
-      .page {
-        padding: 40px 18px 60px;
-      }
+    @media (max-width: 700px) {
 
       .header {
-        margin-bottom: 40px;
+        padding: 55px 20px 35px;
       }
 
       .gallery {
-        grid-template-columns: 1fr;
-        gap: 30px;
+        width: 88%;
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
       }
 
-      .place-name {
-        font-size: 22px;
+      .photo-card {
+        width: 82%;
+        margin: 0 !important;
       }
 
-      .modal {
-        padding: 15px;
+      .photo-card:nth-child(even) {
+        align-self: flex-end;
       }
 
-      .letter {
-        padding: 45px 25px 35px;
+      .photo-card:nth-child(odd) {
+        align-self: flex-start;
       }
+
+      .photo-card img {
+        height: 240px;
+      }
+
+      .card-parana,
+      .card-rio,
+      .card-patagonia,
+      .card-colombia,
+      .card-praga,
+      .card-napoli,
+      .card-cusco,
+      .card-nazare {
+        transform: rotate(0deg);
+      }
+
     }
+
   </style>
 </head>
 
+
 <body>
 
-  <main class="page">
 
-    <!-- =========================
-         CABEÇALHO
-    ========================= -->
+  <!-- =========================
+       MÚSICA
+  ========================= -->
 
-    <header class="header">
+  <audio
+    id="music"
+    src="imagens/home.mp3"
+    autoplay
+    loop
+  ></audio>
 
-      <div class="eyebrow">
-        terceira parada
-      </div>
+  <button
+    id="music-button"
+    class="music-button"
+    type="button"
+    aria-label="Pausar música"
+  >
+    ♪
+  </button>
 
-      <h1>Pelo mundo</h1>
 
-      <p class="intro">
-        Talvez viajar nunca tenha sido sobre os lugares.
-        Talvez tenha sido sobre tudo aquilo que aconteceu
-        enquanto estávamos neles.
-      </p>
+  <!-- =========================
+       CABEÇALHO
+  ========================= -->
 
-    </header>
+  <header class="header">
 
+    <div class="eyebrow">
+      uma coisa que eu lembro
+    </div>
 
-    <!-- =========================
-         GALERIA
-    ========================= -->
+    <h1>Home</h1>
 
-    <section class="gallery">
+    <p class="intro">
+      A gente sempre esteve indo para algum lugar.
+      Porto, Paraná, Rio, Patagônia, Colômbia, Praga,
+      Napoli, Cusco, Nazaré...
+      <br><br>
+      Mas acho que nunca foi realmente sobre os lugares.
+    </p>
 
+  </header>
 
-      <!-- PARANÁ -->
 
-      <button class="place" type="button" onclick="openPlace('parana')">
+  <!-- =========================
+       GALERIA
+  ========================= -->
 
-        <div class="place-image">
-          <img src="imagens/parana.jpg" alt="Paraná">
-        </div>
+  <main class="gallery">
 
-        <div class="place-info">
 
-          <span class="place-number">01</span>
+    <!-- PARANÁ -->
 
-          <div class="place-name">
-            Paraná
-          </div>
+    <div class="photo-card card-parana">
 
-          <span class="place-hint">
-            clique para lembrar
-          </span>
+      <img
+        src="imagens/parana.jpg"
+        alt="Paraná"
+      >
 
-        </div>
+      <span>Paraná</span>
 
-      </button>
+    </div>
 
 
-      <!-- RIO -->
+    <!-- RIO -->
 
-      <button class="place" type="button" onclick="openPlace('rio')">
+    <div class="photo-card card-rio">
 
-        <div class="place-image">
-          <img src="imagens/rio.jpg" alt="Rio de Janeiro">
-        </div>
+      <img
+        src="imagens/rio.jpg"
+        alt="Rio de Janeiro"
+      >
 
-        <div class="place-info">
+      <span>Rio de Janeiro</span>
 
-          <span class="place-number">02</span>
+    </div>
 
-          <div class="place-name">
-            Rio de Janeiro
-          </div>
 
-          <span class="place-hint">
-            clique para lembrar
-          </span>
+    <!-- PATAGÔNIA -->
 
-        </div>
+    <div class="photo-card card-patagonia">
 
-      </button>
+      <img
+        src="imagens/patagonia.jpg"
+        alt="Patagônia"
+      >
 
+      <span>Patagônia</span>
 
-      <!-- PATAGÔNIA -->
+    </div>
 
-      <button class="place" type="button" onclick="openPlace('patagonia')">
 
-        <div class="place-image">
-          <img src="imagens/patagonia.jpg" alt="Patagônia">
-        </div>
+    <!-- COLÔMBIA -->
 
-        <div class="place-info">
+    <div class="photo-card card-colombia">
 
-          <span class="place-number">03</span>
+      <img
+        src="imagens/colombia.jpg"
+        alt="Colômbia"
+      >
 
-          <div class="place-name">
-            Patagônia
-          </div>
+      <span>Colômbia</span>
 
-          <span class="place-hint">
-            clique para lembrar
-          </span>
+    </div>
 
-        </div>
 
-      </button>
+    <!-- PRAGA -->
 
+    <div class="photo-card card-praga">
 
-      <!-- COLÔMBIA -->
+      <img
+        src="imagens/praga.jpg"
+        alt="Praga"
+      >
 
-      <button class="place" type="button" onclick="openPlace('colombia')">
+      <span>Praga</span>
 
-        <div class="place-image">
-          <img src="imagens/colombia.jpg" alt="Colômbia">
-        </div>
+    </div>
 
-        <div class="place-info">
 
-          <span class="place-number">04</span>
+    <!-- NAPOLI -->
 
-          <div class="place-name">
-            Colômbia
-          </div>
+    <div class="photo-card card-napoli">
 
-          <span class="place-hint">
-            clique para lembrar
-          </span>
+      <img
+        src="imagens/napoli.jpg"
+        alt="Napoli"
+      >
 
-        </div>
+      <span>Napoli</span>
 
-      </button>
+    </div>
 
 
-      <!-- PRAGA -->
+    <!-- CUSCO -->
 
-      <button class="place" type="button" onclick="openPlace('praga')">
+    <div class="photo-card card-cusco">
 
-        <div class="place-image">
-          <img src="imagens/praga.jpg" alt="Praga">
-        </div>
+      <img
+        src="imagens/cusco.jpg"
+        alt="Cusco"
+      >
 
-        <div class="place-info">
+      <span>Cusco</span>
 
-          <span class="place-number">05</span>
+    </div>
 
-          <div class="place-name">
-            Praga
-          </div>
 
-          <span class="place-hint">
-            clique para lembrar
-          </span>
+    <!-- NAZARÉ -->
 
-        </div>
+    <div class="photo-card card-nazare">
 
-      </button>
+      <img
+        src="imagens/nazare.jpg"
+        alt="Nazaré"
+      >
 
+      <span>Nazaré</span>
 
-      <!-- NÁPOLES -->
+    </div>
 
-      <button class="place" type="button" onclick="openPlace('napoli')">
-
-        <div class="place-image">
-          <img src="imagens/napoli.jpg" alt="Nápoles">
-        </div>
-
-        <div class="place-info">
-
-          <span class="place-number">06</span>
-
-          <div class="place-name">
-            Napoli
-          </div>
-
-          <span class="place-hint">
-            clique para lembrar
-          </span>
-
-        </div>
-
-      </button>
-
-
-      <!-- CUSCO -->
-
-      <button class="place" type="button" onclick="openPlace('cusco')">
-
-        <div class="place-image">
-          <img src="imagens/cusco.jpg" alt="Cusco">
-        </div>
-
-        <div class="place-info">
-
-          <span class="place-number">07</span>
-
-          <div class="place-name">
-            Cusco
-          </div>
-
-          <span class="place-hint">
-            clique para lembrar
-          </span>
-
-        </div>
-
-      </button>
-
-
-      <!-- NAZARÉ -->
-
-      <button class="place" type="button" onclick="openPlace('nazare')">
-
-        <div class="place-image">
-          <img src="imagens/nazare.jpg" alt="Nazaré">
-        </div>
-
-        <div class="place-info">
-
-          <span class="place-number">08</span>
-
-          <div class="place-name">
-            Nazaré
-          </div>
-
-          <span class="place-hint">
-            clique para lembrar
-          </span>
-
-        </div>
-
-      </button>
-
-
-    </section>
 
   </main>
 
 
   <!-- =========================
-       MODAL
+       FINAL
   ========================= -->
 
-  <div id="modal" class="modal">
+  <section class="ending">
 
-    <article class="letter">
+    <div class="ending-line"></div>
 
-      <button class="close" type="button" onclick="closeModal()">
-        ×
-      </button>
+    <h2>Home is wherever I'm with you.</h2>
 
-      <div id="letter-number" class="letter-number"></div>
+    <p>
+      Talvez seja por isso que eu nunca tenha conseguido
+      escolher um lugar favorito.
+      <br><br>
+      Porque, no fim, o meu lugar favorito sempre foi
+      estar com você.
+    </p>
 
-      <h2 id="letter-title"></h2>
-
-      <div id="letter-content" class="letter-content"></div>
-
-    </article>
-
-  </div>
+  </section>
 
 
   <script>
 
     /* =========================
-       TEXTOS DAS VIAGENS
+       MÚSICA
     ========================= */
 
-    const places = {
+    const music = document.getElementById("music");
+    const musicButton = document.getElementById("music-button");
 
-      parana: {
-        number: "01",
-        title: "Paraná",
-        text: `AQUI ENTRA O TEXTO SOBRE O PARANÁ.
-
-Pode escrever aqui tudo aquilo que você lembra dessa viagem.
-
-Uma memória.
-Uma situação engraçada.
-Alguma coisa que ele fez.
-Alguma coisa que você sentiu.
-
-Não precisa ser sobre o lugar.
-É sobre vocês naquele lugar.`
-      },
-
-      rio: {
-        number: "02",
-        title: "Rio de Janeiro",
-        text: `AQUI ENTRA O TEXTO SOBRE O RIO DE JANEIRO.
-
-Uma lembrança que só vocês dois entendem.
-
-Pode ser uma história pequena.
-Às vezes são justamente essas que ficam.`
-      },
-
-      patagonia: {
-        number: "03",
-        title: "Patagônia",
-        text: `AQUI ENTRA O TEXTO SOBRE A PATAGÔNIA.
-
-Pode falar sobre alguma aventura,
-alguma dificuldade ou algum momento
-em que vocês perceberam que viajar juntos
-era diferente de simplesmente viajar.`
-      },
-
-      colombia: {
-        number: "04",
-        title: "Colômbia",
-        text: `AQUI ENTRA O TEXTO SOBRE A COLÔMBIA.
-
-Uma lembrança dessa viagem.
-
-Um lugar.
-Uma conversa.
-Uma situação completamente aleatória.
-
-Qualquer coisa que faça ele lembrar de vocês.`
-      },
-
-      praga: {
-        number: "05",
-        title: "Praga",
-        text: `AQUI ENTRA O TEXTO SOBRE PRAGA.
-
-Talvez uma lembrança pequena
-que ficou maior com o tempo.`
-      },
-
-      napoli: {
-        number: "06",
-        title: "Napoli",
-        text: `AQUI ENTRA O TEXTO SOBRE NAPOLI.
-
-Pode falar sobre a viagem,
-sobre vocês,
-ou simplesmente sobre uma memória
-que você não quer esquecer.`
-      },
-
-      cusco: {
-        number: "07",
-        title: "Cusco",
-        text: `AQUI ENTRA O TEXTO SOBRE CUSCO.
-
-Uma lembrança dessa viagem.
-
-Algo que você gostaria
-que ele pudesse enxergar novamente
-através dos seus olhos.`
-      },
-
-      nazare: {
-        number: "08",
-        title: "Nazaré",
-        text: `AQUI ENTRA O TEXTO SOBRE NAZARÉ.
-
-A última parada desta parte.
-
-E talvez uma lembrança que mostre
-que nunca foram os lugares.
-
-Foram vocês.`
-      }
-
-    };
+    music.volume = 0.45;
 
 
-    /* =========================
-       ELEMENTOS
-    ========================= */
+    /*
+      Tentativa de iniciar automaticamente.
 
-    const modal = document.getElementById("modal");
-    const letterNumber = document.getElementById("letter-number");
-    const letterTitle = document.getElementById("letter-title");
-    const letterContent = document.getElementById("letter-content");
+      Como ele chega nesta página através de uma
+      interação anterior no site, existe uma boa
+      chance de o navegador permitir o autoplay.
+    */
 
+    window.addEventListener("load", () => {
 
-    /* =========================
-       ABRIR CARTA
-    ========================= */
+      music.play().catch(() => {
 
-    function openPlace(placeName) {
+        /*
+          Se o navegador bloquear o autoplay,
+          o botão continua disponível para iniciar.
+        */
 
-      const place = places[placeName];
+        musicButton.textContent = "▶";
 
-      if (!place) return;
-
-      letterNumber.textContent =
-        "MEMÓRIA " + place.number;
-
-      letterTitle.textContent =
-        place.title;
-
-      letterContent.textContent =
-        place.text;
-
-      modal.classList.add("active");
-
-      document.body.style.overflow = "hidden";
-    }
-
-
-    /* =========================
-       FECHAR CARTA
-    ========================= */
-
-    function closeModal() {
-
-      modal.classList.remove("active");
-
-      document.body.style.overflow = "";
-    }
-
-
-    /* =========================
-       CLICAR FORA DA CARTA
-    ========================= */
-
-    modal.addEventListener("click", function(event) {
-
-      if (event.target === modal) {
-        closeModal();
-      }
+      });
 
     });
 
 
-    /* =========================
-       ESC FECHA
-    ========================= */
+    musicButton.addEventListener("click", () => {
 
-    document.addEventListener("keydown", function(event) {
+      if (music.paused) {
 
-      if (event.key === "Escape") {
-        closeModal();
+        music.play();
+
+        musicButton.textContent = "♪";
+
+      } else {
+
+        music.pause();
+
+        musicButton.textContent = "▶";
+
       }
 
     });
 
   </script>
 
+
 </body>
 </html>
-```
