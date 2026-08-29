@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Igor</title>  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #f7f3ed;
+      color: #292521;
+      font-family: Georgia, "Times New Roman", serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 720px;
+      text-align: center;
+    }
+
+    .small {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.55;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-size: clamp(48px, 12vw, 86px);
+      font-weight: normal;
+      line-height: 0.95;
+      margin-bottom: 24px;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto 42px;
+      opacity: 0.75;
+    }
+
+    button {
+      border: 1px solid #292521;
+      background: transparent;
+      color: #292521;
+      padding: 16px 34px;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #292521;
+      color: #f7f3ed;
+    }
+
+    #message {
+      display: none;
+      margin-top: 48px;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .heart {
+      font-size: 28px;
+      margin-top: 30px;
+    }
+  </style></head><body>  <main class="container"><div class="small">um presente para você</div>
+
+<h1>Para Igor</h1>
+
+<p class="subtitle">
+  Eu queria conseguir te entregar isso pessoalmente.
+  Como ainda não posso, encontrei outra maneira de chegar até você.
+</p>
+
+<button onclick="startExperience()">
+  Começar
+</button>
+
+<div id="message">
+  <p>
+    Feliz aniversário, meu amor.
+  </p>
+
+  <div class="heart">♡</div>
+</div>
+
+  </main>  <script>
+    function startExperience() {
+      document.getElementById("message").style.display = "block";
+    }
+  </script></body>
+</html>
